@@ -1,0 +1,35 @@
+<Finance>
+<Users>
+	<User>
+		<Username>Test</Username>
+		<Password>sadhlasd</Password>
+		<funds>1000</funds>
+		<Followed_Companies>
+			<Followed_Company>
+				<name>Company1</name>
+				<sell_rule>
+				>10€
+				</sell_rule>
+				<buy_rule>
+				<5€
+				</buy_rule>
+				<stocks_owned>
+				1000
+				</stocks_owned>
+			</Followed_Company>
+		</Followed_Companies>
+	</User>
+</Users>
+<Companies>
+	<Companie>
+		<Company_name>
+		Company1
+		</Company_name>
+		<stocks>
+			<stock date="03/03/2015 13:20:20">
+			12.30€
+			</stock>
+		</stocks>
+	</Companie>
+</Companies>
+</Finance>
