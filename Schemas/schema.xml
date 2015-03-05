@@ -1,35 +1,48 @@
 <Finance>
-<Users>
-	<User>
-		<Username>Test</Username>
-		<Password>sadhlasd</Password>
-		<funds>1000</funds>
-		<Followed_Companies>
-			<Followed_Company>
-				<name>Company1</name>
-				<sell_rule>
-				>10€
-				</sell_rule>
-				<buy_rule>
-				<5€
-				</buy_rule>
-				<stocks_owned>
-				1000
-				</stocks_owned>
-			</Followed_Company>
-		</Followed_Companies>
-	</User>
-</Users>
-<Companies>
-	<Companie>
-		<Company_name>
-		Company1
-		</Company_name>
-		<stocks>
-			<stock date="03/03/2015 13:20:20">
-			12.30€
-			</stock>
-		</stocks>
-	</Companie>
-</Companies>
+	<Users>
+		<User>
+			<Username>Test</Username>
+			<Password>sadhlasd</Password>
+			<wallet cur="US$">10000</wallet>
+			<Followed_Companies>
+				<Followed_Company>
+					<symbol favourite="true">COM</symbol>
+					<sell_rule>
+						<ceiling cur="US$">
+						30	
+						</ceiling>
+						<floor cur="US$">
+						20
+						</floor>
+					</sell_rule>
+					<buy_rule>
+						<ceiling cur="US$">
+						15	
+						</ceiling>
+						<floor cur="US$">
+						5
+						</floor>
+					</buy_rule>
+					<stocks_owned>
+					1000
+					</stocks_owned>
+				</Followed_Company>
+			</Followed_Companies>
+		</User>
+	</Users>
+	<Companies>
+		<Company>
+			<Company_name>
+				Company1
+			</Company_name>
+			<Company_symbol>
+				COM
+			</Company_symbol>
+			<stocks_records>
+				<stock date="03/03/2015 13:20:20" cur="US$">
+				12.30
+				</stock>
+			</stocks_records>
+		</Company>
+	</Companies>
 </Finance>
