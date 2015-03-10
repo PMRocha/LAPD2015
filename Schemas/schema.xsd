@@ -108,7 +108,7 @@
                                         <xs:element name="Stocks_records">
                                             <xs:complexType>
                                                 <xs:sequence>
-                                                    <xs:element name="Stock">
+                                                    <xs:element name="Stock" minOccurs="0" maxOccurs="unbounded">
                                                         <xs:complexType>
                                                             <xs:simpleContent>
                                                                 <xs:extension base="xs:decimal">
