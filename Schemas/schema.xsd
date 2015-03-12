@@ -31,7 +31,7 @@
                                                                     <xs:complexType>
                                                                         <xs:simpleContent>
                                                                             <xs:extension base="xs:string">
-                                                                                <xs:attribute name="favourite" type="xs:boolean" default="true"/>
+                                                                                <xs:attribute name="favourite" type="xs:boolean" default="false"/>
                                                                             </xs:extension>
                                                                         </xs:simpleContent>
                                                                     </xs:complexType>
