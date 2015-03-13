@@ -26,6 +26,16 @@
 					<Stocks_owned>
 					1000
 					</Stocks_owned>
+					<Recent_Company_News_Reports>
+						<Recent_Company_News_Report>
+							<Headline>
+								Example headline
+							</Headline>
+							<News_Report>
+								this report is about stuff
+							</News_Report>
+						</Recent_Company_News_Report>
+					</Recent_Company_News_Reports>
 				</Followed_Company>
 			</Followed_Companies>
 		</User>

@@ -85,6 +85,20 @@
                                                                     </xs:complexType>
                                                                 </xs:element>
                                                                 <xs:element name="Stocks_owned" type="xs:integer"/>
+                                                                <xs:element name="Recent_Company_News_Reports">
+                                                                    <xs:complexType>
+                                                                        <xs:sequence>
+                                                                            <xs:element name="Recent_Company_News_Report" minOccurs="0" maxOccurs="unbounded">
+                                                                                <xs:complexType>
+                                                                                    <xs:sequence>
+                                                                                        <xs:element name="Headline" type="xs:string"/>
+                                                                                        <xs:element name="News_Report" type="xs:string"/>
+                                                                                    </xs:sequence>
+                                                                                </xs:complexType>
+                                                                            </xs:element>
+                                                                        </xs:sequence>
+                                                                    </xs:complexType>
+                                                                </xs:element>
                                                             </xs:sequence>
                                                         </xs:complexType>
                                                     </xs:element>
