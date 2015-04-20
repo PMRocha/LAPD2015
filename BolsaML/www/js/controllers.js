@@ -44,6 +44,21 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('StockCtrl', function($scope, $stateParams) {
+.controller('StockCtrl', function($scope, $stateParams, $http, $timeout) {
   $scope.stock = $stateParams;
+
+  $url = "http://query.yahooapis.com/v1/public/yql";
+  $symbol = $stateParams.title;
+  $data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + $symbol + "')");
+
+  $http.get($url + '?q=' + $data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env")
+    .then(function (resp) {
+      $timeout(function() {
+        $scope.$apply( function() {
+          $scope.stock = resp.data.query.results.quote;
+        });
+      }, 1);
+    }, function (error) {
+      console.error(error);
+    });
 });
