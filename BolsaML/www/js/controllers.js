@@ -33,32 +33,30 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('WatchlistCtrl', function($scope) {
+.controller('WatchlistCtrl', function($scope, $http) {
   $scope.watchlist = [
-    { name: "Microsoft", title: 'MSFT', id: 1, change: 3.89, badgeStyle: "badge-positive"},
-    { name: "Google", title: 'GOOGL', id: 2, change: 5.83, badgeStyle: "badge-positive"},
-    { name: "Apple", title: 'AAPL', id: 3, change: 0.01, badgeStyle: "badge-assertive"},
-    { name: "Ebay", title: 'EBAY', id: 4, change: 0.53, badgeStyle: "badge-assertive"},
-    { name: "Amazon", title: 'AMZN', id: 5, change: 1.12, badgeStyle: "badge-positive"},
-    { name: "Dow Jones Index", title: 'DOW J', id: 6, change: 10.4, badgeStyle: "badge-assertive"}
+    { name: "Microsoft", symbol: 'MSFT', id: 1, change: 3.89, badgeStyle: "badge-positive"},
+    { name: "Google", symbol: 'GOOGL', id: 2, change: 5.83, badgeStyle: "badge-positive"},
+    { name: "Apple", symbol: 'AAPL', id: 3, change: 0.01, badgeStyle: "badge-assertive"},
+    { name: "Ebay", symbol: 'EBAY', id: 4, change: 0.53, badgeStyle: "badge-assertive"},
+    { name: "Amazon", symbol: 'AMZN', id: 5, change: 1.12, badgeStyle: "badge-positive"}
   ];
 })
 
 .controller('StockCtrl', function($scope, $stateParams, $http, $timeout) {
-  $scope.stock = $stateParams;
-
   $url = "http://query.yahooapis.com/v1/public/yql";
-  $symbol = $stateParams.title;
+  $symbol = $stateParams.symbol;
   $data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + $symbol + "')");
 
   $http.get($url + '?q=' + $data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env")
-    .then(function (resp) {
+    .success(function (data, status, header, config) {
       $timeout(function() {
-        $scope.$apply( function() {
-          $scope.stock = resp.data.query.results.quote;
+        $scope.$apply(function() {
+          $scope.stock = data.query.results.quote;
         });
-      }, 1);
-    }, function (error) {
-      console.error(error);
+      }, 0);
+    })
+    .error(function (data, status, header, config) {
+      console.error(data);
     });
 });

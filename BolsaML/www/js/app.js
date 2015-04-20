@@ -67,7 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.single', {
-    url: "/watchlist/:id/:title/:name",
+    url: "/watchlist/:symbol",
     views: {
       'menuContent': {
         templateUrl: "templates/stock.html",
