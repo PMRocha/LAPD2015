@@ -61,7 +61,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       views: {
         'menuContent': {
           templateUrl: "templates/watchlist.html",
-          controller: 'WatchlistCtrl'
+          controller: 'WatchlistCtrl as watchlistCtrl'
         }
       }
     })
@@ -71,7 +71,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: "templates/stock.html",
-        controller: 'StockCtrl'
+        controller: 'StockCtrl as stockCtrl'
       }
     }
   });

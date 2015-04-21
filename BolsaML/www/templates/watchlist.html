@@ -1,7 +1,7 @@
 <ion-view view-title="Watchlist">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="stock in watchlist" href="#/app/watchlist/{{stock.symbol}}">
+      <ion-item ng-repeat="stock in watchlistCtrl.stocks" href="#/app/watchlist/{{stock.symbol}}">
         {{stock.symbol}}
     	<span class="badge {{stock.badgeStyle}}">{{stock.change}}</span>
       </ion-item>

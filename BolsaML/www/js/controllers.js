@@ -34,7 +34,9 @@ angular.module('starter.controllers', [])
 })
 
 .controller('WatchlistCtrl', function($scope, $http) {
-  $scope.watchlist = [
+  var watchlistCtrl = this;
+
+  watchlistCtrl.stocks = [
     { name: "Microsoft", symbol: 'MSFT', id: 1, change: 3.89, badgeStyle: "badge-positive"},
     { name: "Google", symbol: 'GOOGL', id: 2, change: 5.83, badgeStyle: "badge-positive"},
     { name: "Apple", symbol: 'AAPL', id: 3, change: 0.01, badgeStyle: "badge-assertive"},
@@ -43,20 +45,27 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('StockCtrl', function($scope, $stateParams, $http, $timeout) {
-  $url = "http://query.yahooapis.com/v1/public/yql";
-  $symbol = $stateParams.symbol;
-  $data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + $symbol + "')");
+.controller('StockCtrl', function($stateParams, $http) {
+  var stockCtrl = this;
 
-  $http.get($url + '?q=' + $data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env")
-    .success(function (data, status, header, config) {
-      $timeout(function() {
-        $scope.$apply(function() {
-          $scope.stock = data.query.results.quote;
-        });
-      }, 0);
-    })
-    .error(function (data, status, header, config) {
-      console.error(data);
-    });
-});
+  var symbol = $stateParams.symbol;
+  var url = "http://query.yahooapis.com/v1/public/yql";
+  var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
+  url = url + '?q=' + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env";
+  console.log(url);
+
+  fecthData()
+    .success(fecthSuccess)
+    .error(fecthError);
+
+  function fecthData() {
+    return $http.get(url);
+  }
+
+  function fecthSuccess(data) {
+    stockCtrl.stock = data.query.results.quote;
+  }
+
+  function fecthError(error) {
+    console.error(error);
+  }});
