@@ -21,3 +21,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+img {
+  max-width: 80%;
+  height: auto;
+  width: auto\9; /* ie8 */
+}
+
+.center {
+  margin-right: auto;
+  margin-left: auto;
+  width: 800px;
+}

@@ -7602,3 +7602,14 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+img {
+  max-width: 80%;
+  height: auto;
+  width: auto\9;
+  /* ie8 */ }
+
+.center {
+  margin-right: auto;
+  margin-left: auto;
+  width: 800px; }

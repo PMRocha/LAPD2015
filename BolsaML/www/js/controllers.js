@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('WatchlistCtrl', function($scope, $http) {
+.controller('WatchlistCtrl', function($http) {
   var watchlistCtrl = this;
 
   watchlistCtrl.stocks = [
