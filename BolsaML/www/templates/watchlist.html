@@ -2,8 +2,8 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="stock in watchlistCtrl.stocks" href="#/app/watchlist/{{stock.symbol}}">
-        {{stock.symbol}}
-    	<span class="badge {{stock.badgeStyle}}">{{stock.change}}</span>
+        {{stock.Name}}
+    	<span class="badge {{stock.badgeStyle}}">{{stock.Change}}</span>
       </ion-item>
     </ion-list>
   </ion-content>

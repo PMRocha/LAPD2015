@@ -36,29 +36,74 @@ angular.module('starter.controllers', [])
 .controller('WatchlistCtrl', function($http) {
   var watchlistCtrl = this;
 
-  watchlistCtrl.stocks = [
-    { name: "Microsoft", symbol: 'MSFT', id: 1, change: 3.89, badgeStyle: "badge-positive"},
-    { name: "Google", symbol: 'GOOGL', id: 2, change: 5.83, badgeStyle: "badge-positive"},
-    { name: "Apple", symbol: 'AAPL', id: 3, change: 0.01, badgeStyle: "badge-assertive"},
-    { name: "Ebay", symbol: 'EBAY', id: 4, change: 0.53, badgeStyle: "badge-assertive"},
-    { name: "Amazon", symbol: 'AMZN', id: 5, change: 1.12, badgeStyle: "badge-positive"}
+  var stocks = [
+    { symbol: 'MSFT' },
+    { symbol: 'GOOGL' },
+    { symbol: 'AAPL' },
+    { symbol: 'EBAY' },
+    { symbol: 'AMZN' },
+    { symbol: 'SHAK' },
+    { symbol: 'AMOT' },
+    { symbol: 'XRM' },
+    { symbol: 'HILL' },
+    { symbol: 'CLFD' },
+    { symbol: 'ANAC' },
+    { symbol: 'SPWH' },
+    { symbol: 'HOT' }
   ];
+
+  fetchData(stocks)
+    .success(fetchSuccess)
+    .error(fetchError);
+
+  function fetchData(stocks) {
+    var url = "http://query.yahooapis.com/v1/public/yql";
+
+    var dataPrepare = "select * from yahoo.finance.quotes where symbol in (";
+    stocks.forEach(function(stock) {
+      dataPrepare = dataPrepare + "'" + stock.symbol + "',";
+    });
+    dataPrepare = dataPrepare.substring(0, dataPrepare.length - 1);
+    dataPrepare += ")";
+    var data = encodeURIComponent(dataPrepare);
+
+    url = url + "?q=" + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env";
+    
+    return $http.get(url);
+  }
+
+  function fetchSuccess(data) {
+    var stocks = data.query.results.quote;
+
+    stocks.forEach(function(stock) {
+      if(parseFloat(stock.Change) > 0.0) {
+        stock["badgeStyle"] = "badge-positive";
+      } else {
+        stock["badgeStyle"] = "badge-assertive";
+      }
+    });
+
+    watchlistCtrl.stocks = stocks;
+  }
+
+  function fetchError(error) {
+    console.error(error);
+  }
 })
 
 .controller('StockCtrl', function($stateParams, $http) {
   var stockCtrl = this;
 
-  var symbol = $stateParams.symbol;
-  var url = "http://query.yahooapis.com/v1/public/yql";
-  var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
-  url = url + '?q=' + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env";
-  console.log(url);
-
-  fecthData()
+  fecthData($stateParams.symbol)
     .success(fecthSuccess)
     .error(fecthError);
 
-  function fecthData() {
+  function fecthData(symbol) {
+    var url = "http://query.yahooapis.com/v1/public/yql";
+    var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
+
+    url = url + "?q=" + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env";
+
     return $http.get(url);
   }
 
