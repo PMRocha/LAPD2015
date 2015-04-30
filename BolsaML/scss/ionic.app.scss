@@ -26,8 +26,9 @@ img {
   height: auto;
   width: auto;
   display: block;
-  margin: auto; /* ie8 */
+  margin: auto;
 }
+
 #slide-box {
   height: 100%;
 }
@@ -58,4 +59,9 @@ img {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+#chart {
+  max-width: 100%;
+  margin: 1%;
 }

@@ -1,7 +1,8 @@
 <ion-view>
   <ion-nav-title>{{stockCtrl.stock.Name}}</ion-nav-title>
   <ion-content>
-    <ion-spinner class="absolute-center" icon="ios" ng-if="stockCtrl.loading"></ion-spinner>
+    <ion-spinner class="absolute-center" icon="spiral" ng-if="stockCtrl.loading"></ion-spinner>
+    <span ng-if="!stockCtrl.loading">
     <div><strong>Symbol: </strong>{{stockCtrl.stock.symbol}}</div>
     <div><strong>Ask: </strong>{{stockCtrl.stock.Ask}}</div>
     <div><strong>Bid: </strong>{{stockCtrl.stock.Bid}}</div>
@@ -56,6 +57,8 @@
     <div><strong>DividendYield: </strong>{{stockCtrl.stock.DividendYield}}</div>
     <div><strong>PercentChange: </strong>{{stockCtrl.stock.PercentChange}}</div>
     <br>
-    <img ng-src="http://chart.finance.yahoo.com/z?s={{stockCtrl.stock.symbol}}&amp;t={{stockCtrl.timespan}}&amp;q=l&amp;l=off&amp;z=l&amp;a=v" ng-click="stockCtrl.switchTimespan()" alt="quote chart"/>
+    <img id="chart" ng-src="http://chart.finance.yahoo.com/z?s={{stockCtrl.stock.symbol}}&amp;t={{stockCtrl.timespan}}&amp;q=l&amp;l=off&amp;z=l&amp;a=v" ng-click="stockCtrl.switchTimespan()" alt="quote chart"/>
+	</span>
+	<br><br>
   </ion-content>
 </ion-view>
