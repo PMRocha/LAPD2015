@@ -50,9 +50,10 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('WatchlistCtrl', function($ionicLoading, $http) {
+.controller('WatchlistCtrl', function($http, $timeout) {
   var watchlistCtrl = this;
 
+  watchlistCtrl.showing = 1;
   watchlistCtrl.loading = true;
 
   var stocks = [
@@ -71,28 +72,39 @@ angular.module('starter.controllers', [])
     { symbol: 'HOT' }
   ];
 
-  fetchData(stocks)
-    .success(fetchSuccess)
-    .error(fetchError);
+  (function tick() {
 
-  watchlistCtrl.switchBadge = function (stock) {
-    var showed = stock.Showed;
+    fetchData(stocks)
+      .success(fetchSuccess)
+      .error(fetchError);
+      $timeout(tick, 2000);
+    })();
 
-    if (showed == stock.Change) {
-      stock.Showed = stock.ChangeinPercent;
-    } else if (showed == stock.ChangeinPercent) {
-      stock.Showed = stock.MarketCapitalization;
-    } else if (showed == stock.MarketCapitalization) {
-      stock.Showed = stock.Change;
-    } else {
-      stock.Showed = "N/A";
-    }
+  watchlistCtrl.switchBadge = function (stocks) {
+
+    stocks.forEach(function (stock) {
+      var showed = stock.Showed;
+
+      if (showed == stock.Change) {
+        stock.Showed = stock.ChangeinPercent;
+        watchlistCtrl.showing = 2;
+      } else if (showed == stock.ChangeinPercent) {
+        stock.Showed = stock.MarketCapitalization;
+        watchlistCtrl.showing = 3;
+      } else if (showed == stock.MarketCapitalization) {
+        stock.Showed = stock.Change;
+        watchlistCtrl.showing = 1;
+      } else {
+        stock.Showed = "N/A";
+        watchlistCtrl.showing = 0;
+      }
+    });
   };
 
   function fetchData(stocks) {
     var url = "http://query.yahooapis.com/v1/public/yql";
 
-    var dataPrepare = "select symbol, Name, ChangeinPercent, Change, MarketCapitalization from yahoo.finance.quotes where symbol in (";
+    var dataPrepare = "select symbol, LastTradePriceOnly, Name, ChangeinPercent, Change, MarketCapitalization from yahoo.finance.quotes where symbol in (";
     stocks.forEach(function(stock) {
       dataPrepare = dataPrepare + "'" + stock.symbol + "',";
     });
@@ -109,7 +121,19 @@ angular.module('starter.controllers', [])
     var stocks = data.query.results.quote;
 
     stocks.forEach(function(stock) {
-      stock["Showed"] = stock.Change;
+      var showed;
+
+      if (watchlistCtrl.showing == 1) {
+        showed = stock.Change;
+      } else if (watchlistCtrl.showing == 2) {
+        showed = stock.ChangeinPercent;
+      } else if (watchlistCtrl.showing == 3) {
+        showed = stock.MarketCapitalization;
+      } else {
+        showed = "N/A";
+      }
+
+      stock["Showed"] = showed;
     });
 
     watchlistCtrl.stocks = stocks;
@@ -121,15 +145,19 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('StockCtrl', function($stateParams, $http) {
+.controller('StockCtrl', function($stateParams, $http, $timeout) {
   var stockCtrl = this;
 
   stockCtrl.loading = true;
   stockCtrl.timespan = "1d";
+  
+  (function tick() {
 
-  fecthData($stateParams.symbol)
-    .success(fecthSuccess)
-    .error(fecthError);
+    fetchData($stateParams.symbol)
+      .success(fetchSuccess)
+      .error(fetchError);
+      $timeout(tick, 2000);
+  })();
 
   stockCtrl.switchTimespan = function() {
 
@@ -152,7 +180,7 @@ angular.module('starter.controllers', [])
     stockCtrl.timespan = timespan;
   }
 
-  function fecthData(symbol) {
+  function fetchData(symbol) {
     var url = "http://query.yahooapis.com/v1/public/yql";
     var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
 
@@ -161,11 +189,12 @@ angular.module('starter.controllers', [])
     return $http.get(url);
   }
 
-  function fecthSuccess(data) {
+  function fetchSuccess(data) {
     stockCtrl.stock = data.query.results.quote;
     stockCtrl.loading = false;
   }
 
-  function fecthError(error) {
+  function fetchError(error) {
     console.error(error);
-  }});
+  }
+});
