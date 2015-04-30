@@ -4,21 +4,38 @@ angular.module('starter.controllers', [])
   // Form data for the login modal
   $scope.loginData = {};
 
-  // Create the login modal that we will use later
+  // Create the login modal 
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
   }).then(function(modal) {
-    $scope.modal = modal;
+    $scope.loginModal = modal;
   });
 
+  // Create the logout modal
+  $ionicModal.fromTemplateUrl('templates/logout.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.logoutModal = modal;
+  });
+
+  // Open the logout modal
+  $scope.logout = function() {
+    $scope.logoutModal.show();
+  };
+
+  // Triggered in the logout modal to close it
+  $scope.closeLogout = function() {
+    $scope.logoutModal.hide();
+  };
+  
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
-    $scope.modal.hide();
+    $scope.loginModal.hide();
   };
 
   // Open the login modal
   $scope.login = function() {
-    $scope.modal.show();
+    $scope.loginModal.show();
   };
 
   // Perform the login action when the user submits the login form
@@ -33,8 +50,10 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('WatchlistCtrl', function($http) {
+.controller('WatchlistCtrl', function($ionicLoading, $http) {
   var watchlistCtrl = this;
+
+  watchlistCtrl.loading = true;
 
   var stocks = [
     { symbol: 'MSFT' },
@@ -56,10 +75,24 @@ angular.module('starter.controllers', [])
     .success(fetchSuccess)
     .error(fetchError);
 
+  watchlistCtrl.switchBadge = function (stock) {
+    var showed = stock.Showed;
+
+    if (showed == stock.Change) {
+      stock.Showed = stock.ChangeinPercent;
+    } else if (showed == stock.ChangeinPercent) {
+      stock.Showed = stock.MarketCapitalization;
+    } else if (showed == stock.MarketCapitalization) {
+      stock.Showed = stock.Change;
+    } else {
+      stock.Showed = "N/A";
+    }
+  };
+
   function fetchData(stocks) {
     var url = "http://query.yahooapis.com/v1/public/yql";
 
-    var dataPrepare = "select * from yahoo.finance.quotes where symbol in (";
+    var dataPrepare = "select symbol, Name, ChangeinPercent, Change, MarketCapitalization from yahoo.finance.quotes where symbol in (";
     stocks.forEach(function(stock) {
       dataPrepare = dataPrepare + "'" + stock.symbol + "',";
     });
@@ -68,7 +101,7 @@ angular.module('starter.controllers', [])
     var data = encodeURIComponent(dataPrepare);
 
     url = url + "?q=" + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env";
-    
+
     return $http.get(url);
   }
 
@@ -76,14 +109,11 @@ angular.module('starter.controllers', [])
     var stocks = data.query.results.quote;
 
     stocks.forEach(function(stock) {
-      if(parseFloat(stock.Change) > 0.0) {
-        stock["badgeStyle"] = "badge-positive";
-      } else {
-        stock["badgeStyle"] = "badge-assertive";
-      }
+      stock["Showed"] = stock.Change;
     });
 
     watchlistCtrl.stocks = stocks;
+    watchlistCtrl.loading = false;
   }
 
   function fetchError(error) {
@@ -94,9 +124,33 @@ angular.module('starter.controllers', [])
 .controller('StockCtrl', function($stateParams, $http) {
   var stockCtrl = this;
 
+  stockCtrl.loading = true;
+  stockCtrl.timespan = "1d";
+
   fecthData($stateParams.symbol)
     .success(fecthSuccess)
     .error(fecthError);
+
+  stockCtrl.switchTimespan = function() {
+
+    var timespan = stockCtrl.timespan;
+
+    if (timespan == "1d") {
+      timespan = "5d";
+    } else if (timespan == "5d") {
+      timespan = "1m";
+    } else if (timespan == "1m") {
+      timespan = "6m";
+    } else if (timespan == "6m") {
+      timespan = "1y";
+    } else if (timespan == "1y") {
+      timespan = "1d";
+    } else {
+      timespan = "1d";
+    }
+
+    stockCtrl.timespan = timespan;
+  }
 
   function fecthData(symbol) {
     var url = "http://query.yahooapis.com/v1/public/yql";
@@ -109,6 +163,7 @@ angular.module('starter.controllers', [])
 
   function fecthSuccess(data) {
     stockCtrl.stock = data.query.results.quote;
+    stockCtrl.loading = false;
   }
 
   function fecthError(error) {

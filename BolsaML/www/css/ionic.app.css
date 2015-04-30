@@ -7606,19 +7606,36 @@ a.button {
 img {
   max-width: 80%;
   height: auto;
-  width: auto\9;
+  width: auto;
+  display: block;
+  margin: auto;
   /* ie8 */ }
 
-.slider {
+#slide-box {
+  height: 100%; }
+
+.scroll {
   height: 100%; }
 
 .slider-slide {
-  padding-top: 80px;
+  padding-top: 50px;
   color: #000;
   background-color: #fff;
   text-align: center;
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-weight: 300; }
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
 
 .slider-pager {
-  bottom: 0; }
+  bottom: 2%; }
+
+/* Absolute Center CSS Spinner */
+.absolute-center {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0; }

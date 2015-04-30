@@ -1,6 +1,61 @@
 <ion-view>
   <ion-nav-title>{{stockCtrl.stock.Name}}</ion-nav-title>
   <ion-content>
-    <ion-spinner icon="android"></ion-spinner>
+    <ion-spinner class="absolute-center" icon="ios" ng-if="stockCtrl.loading"></ion-spinner>
+    <div><strong>Symbol: </strong>{{stockCtrl.stock.symbol}}</div>
+    <div><strong>Ask: </strong>{{stockCtrl.stock.Ask}}</div>
+    <div><strong>Bid: </strong>{{stockCtrl.stock.Bid}}</div>
+    <div><strong>AverageDailyVolume: </strong>{{stockCtrl.stock.AverageDailyVolume}}</div>
+    <div><strong>BookValue: </strong>{{stockCtrl.stock.BookValue}}</div>
+    <div><strong>Change_PercentChange: </strong>{{stockCtrl.stock.Change_PercentChange}}</div>
+    <div><strong>Change: </strong>{{stockCtrl.stock.Change}}</div>
+    <div><strong>Currency: </strong>{{stockCtrl.stock.Currency}}</div>
+    <div><strong>DividendShare: </strong>{{stockCtrl.stock.DividendShare}}</div>
+    <div><strong>LastTradeDate: </strong>{{stockCtrl.stock.LastTradeDate}}</div>
+    <div><strong>EarningsShare: </strong>{{stockCtrl.stock.EarningsShare}}</div>
+    <div><strong>EPSEstimateCurrentYear: </strong>{{stockCtrl.stock.EPSEstimateCurrentYear}}</div>
+    <div><strong>EPSEstimateNextYear: </strong>{{stockCtrl.stock.EPSEstimateNextYear}}</div>
+    <div><strong>EPSEstimateNextQuarter: </strong>{{stockCtrl.stock.EPSEstimateNextQuarter}}</div>
+    <div><strong>DaysLow: </strong>{{stockCtrl.stock.DaysLow}}</div>
+    <div><strong>DaysHigh: </strong>{{stockCtrl.stock.DaysHigh}}</div>
+    <div><strong>YearLow: </strong>{{stockCtrl.stock.YearLow}}</div>
+    <div><strong>YearHigh: </strong>{{stockCtrl.stock.YearHigh}}</div>
+    <div><strong>MarketCapitalization: </strong>{{stockCtrl.stock.MarketCapitalization}}</div>
+    <div><strong>EBITDA: </strong>{{stockCtrl.stock.EBITDA}}</div>
+    <div><strong>ChangeFromYearLow: </strong>{{stockCtrl.stock.ChangeFromYearLow}}</div>
+    <div><strong>PercentChangeFromYearLow: </strong>{{stockCtrl.stock.PercentChangeFromYearLow}}</div>
+    <div><strong>ChangeFromYearHigh: </strong>{{stockCtrl.stock.ChangeFromYearHigh}}</div>
+    <div><strong>PercebtChangeFromYearHigh: </strong>{{stockCtrl.stock.PercebtChangeFromYearHigh}}</div>
+    <div><strong>LastTradeWithTime: </strong>{{stockCtrl.stock.LastTradeWithTime}}</div>
+    <div><strong>LastTradePriceOnly: </strong>{{stockCtrl.stock.LastTradePriceOnly}}</div>
+    <div><strong>DaysRange: </strong>{{stockCtrl.stock.DaysRange}}</div>
+    <div><strong>FiftydayMovingAverage: </strong>{{stockCtrl.stock.FiftydayMovingAverage}}</div>
+    <div><strong>TwoHundreddayMovingAverage: </strong>{{stockCtrl.stock.TwoHundreddayMovingAverage}}</div>
+    <div><strong>ChangeFromTwoHundreddayMovingAverage: </strong>{{stockCtrl.stock.ChangeFromTwoHundreddayMovingAverage}}</div>
+    <div><strong>PercentChangeFromTwoHundreddayMovingAverage: </strong>{{stockCtrl.stock.PercentChangeFromTwoHundreddayMovingAverage}}</div>
+    <div><strong>ChangeFromFiftydayMovingAverage: </strong>{{stockCtrl.stock.ChangeFromFiftydayMovingAverage}}</div>
+    <div><strong>PercentChangeFromFiftydayMovingAverage: </strong>{{stockCtrl.stock.PercentChangeFromFiftydayMovingAverage}}</div>
+    <div><strong>Name: </strong>{{stockCtrl.stock.Name}}</div>
+    <div><strong>Open: </strong>{{stockCtrl.stock.Open}}</div>
+    <div><strong>PreviousClose: </strong>{{stockCtrl.stock.PreviousClose}}</div>
+    <div><strong>ChangeinPercent: </strong>{{stockCtrl.stock.ChangeinPercent}}</div>
+    <div><strong>PriceSales: </strong>{{stockCtrl.stock.PriceSales}}</div>
+    <div><strong>PriceBook: </strong>{{stockCtrl.stock.PriceBook}}</div>
+    <div><strong>ExDividendDate: </strong>{{stockCtrl.stock.ExDividendDate}}</div>
+    <div><strong>PERatio: </strong>{{stockCtrl.stock.PERatio}}</div>
+    <div><strong>DividendPayDate: </strong>{{stockCtrl.stock.DividendPayDate}}</div>
+    <div><strong>PriceEPSEstimateCurrentYear: </strong>{{stockCtrl.stock.PriceEPSEstimateCurrentYear}}</div>
+    <div><strong>PriceEPSEstimateNextYear: </strong>{{stockCtrl.stock.PriceEPSEstimateNextYear}}</div>
+    <div><strong>Symbol: </strong>{{stockCtrl.stock.Symbol}}</div>
+    <div><strong>ShortRatio: </strong>{{stockCtrl.stock.ShortRatio}}</div>
+    <div><strong>LastTradeTime: </strong>{{stockCtrl.stock.LastTradeTime}}</div>
+    <div><strong>OneyrTargetPrice: </strong>{{stockCtrl.stock.OneyrTargetPrice}}</div>
+    <div><strong>Volume: </strong>{{stockCtrl.stock.Volume}}</div>
+    <div><strong>YearRange: </strong>{{stockCtrl.stock.YearRange}}</div>
+    <div><strong>StockExchange: </strong>{{stockCtrl.stock.StockExchange}}</div>
+    <div><strong>DividendYield: </strong>{{stockCtrl.stock.DividendYield}}</div>
+    <div><strong>PercentChange: </strong>{{stockCtrl.stock.PercentChange}}</div>
+    <br>
+    <img ng-src="http://chart.finance.yahoo.com/z?s={{stockCtrl.stock.symbol}}&amp;t={{stockCtrl.timespan}}&amp;q=l&amp;l=off&amp;z=l" ng-click="stockCtrl.switchTimespan()" alt="quote chart"/>
   </ion-content>
 </ion-view>
