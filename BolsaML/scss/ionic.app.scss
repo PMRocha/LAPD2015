@@ -21,6 +21,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+* {  
+ font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
 img {
   max-width: 80%;
   height: auto;
@@ -40,8 +44,6 @@ img {
   color: #000;
   background-color: #fff;
   text-align: center;
-
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
 }
 .slider-pager {
 	bottom: 2%;
@@ -65,3 +67,7 @@ img {
   max-width: 100%;
   margin: 1%;
 }
+
+/* Absolute Center CSS Spinner END */
+
+/* Stock Template Page */

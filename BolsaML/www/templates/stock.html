@@ -3,7 +3,7 @@
   <ion-content>
     <ion-spinner class="absolute-center" icon="spiral" ng-if="stockCtrl.loading"></ion-spinner>
     <span ng-if="!stockCtrl.loading">
-    <div><strong>Symbol: </strong>{{stockCtrl.stock.symbol}}</div>
+    <div id="stock-symbol"><strong>Symbol: </strong>{{stockCtrl.stock.symbol}}</div>
     <div><strong>Ask: </strong>{{stockCtrl.stock.Ask}}</div>
     <div><strong>Bid: </strong>{{stockCtrl.stock.Bid}}</div>
     <div><strong>AverageDailyVolume: </strong>{{stockCtrl.stock.AverageDailyVolume}}</div>
