@@ -2,7 +2,7 @@
 	<Users>
 		<User>
 			<Username>Test</Username>
-			<Password>sadhlasd</Password>
+			<Password>qwerty</Password>
 			<Wallet cur="US$">10000</Wallet>
 			<Followed_Companies>
 				<Followed_Company>
@@ -25,6 +25,95 @@
 					</Buy_rule>
 					<Stocks_owned>
 					1000
+					</Stocks_owned>
+					<Stocks_price cur="US$">
+					2.36
+					</Stocks_price>
+				</Followed_Company>
+			</Followed_Companies>
+		</User>
+		<User>
+			<Username>john</Username>
+			<Password>12345</Password>
+			<Wallet cur="US$">10000</Wallet>
+			<Followed_Companies>
+				<Followed_Company>
+					<Symbol favourite="true">COM</Symbol>
+					<Sell_rule quantity=10>
+						<Ceiling cur="US$">
+						30	
+						</Ceiling>
+						<Floor cur="US$">
+						20
+						</Floor>
+					</Sell_rule>
+					<Buy_rule quantity=10>
+						<Ceiling cur="US$">
+						15	
+						</Ceiling>
+						<Floor cur="US$">
+						5
+						</Floor>
+					</Buy_rule>
+					<Stocks_owned>
+					1000
+					</Stocks_owned>
+					<Stocks_price cur="US$">
+					2.36
+					</Stocks_price>
+				</Followed_Company>
+				<Followed_Company>
+					<Symbol favourite="true">ISR</Symbol>
+					<Sell_rule quantity=10>
+						<Ceiling cur="US$">
+						30	
+						</Ceiling>
+						<Floor cur="US$">
+						20
+						</Floor>
+					</Sell_rule>
+					<Buy_rule quantity=10>
+						<Ceiling cur="US$">
+						15	
+						</Ceiling>
+						<Floor cur="US$">
+						5
+						</Floor>
+					</Buy_rule>
+					<Stocks_owned>
+					10
+					</Stocks_owned>
+					<Stocks_price cur="US$">
+					10
+					</Stocks_price>
+				</Followed_Company>
+			</Followed_Companies>
+		</User>
+		<User>
+			<Username>correia</Username>
+			<Password>12345</Password>
+			<Wallet cur="US$">0</Wallet>
+			<Followed_Companies>
+				<Followed_Company>
+					<Symbol favourite="true">COM</Symbol>
+					<Sell_rule quantity=10>
+						<Ceiling cur="US$">
+						30	
+						</Ceiling>
+						<Floor cur="US$">
+						20
+						</Floor>
+					</Sell_rule>
+					<Buy_rule quantity=10>
+						<Ceiling cur="US$">
+						15	
+						</Ceiling>
+						<Floor cur="US$">
+						5
+						</Floor>
+					</Buy_rule>
+					<Stocks_owned>
+					10
 					</Stocks_owned>
 					<Stocks_price cur="US$">
 					2.36
