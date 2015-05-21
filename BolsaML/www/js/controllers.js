@@ -53,6 +53,8 @@ angular.module('starter.controllers', [])
 .controller('WatchlistCtrl', function($http, $timeout) {
   var watchlistCtrl = this;
 
+  watchlistCtrl.isIOS = ionic.Platform.isIOS();
+  watchlistCtrl.isAndroid = ionic.Platform.isAndroid();
   watchlistCtrl.showing = 1;
   watchlistCtrl.loading = true;
 
