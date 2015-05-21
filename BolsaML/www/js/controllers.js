@@ -150,6 +150,8 @@ angular.module('starter.controllers', [])
 .controller('StockCtrl', function($stateParams, $http, $timeout) {
   var stockCtrl = this;
 
+  stockCtrl.isIOS = ionic.Platform.isIOS();
+  stockCtrl.isAndroid = ionic.Platform.isAndroid();
   stockCtrl.loading = true;
   stockCtrl.timespan = "1d";
   

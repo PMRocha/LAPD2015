@@ -1,7 +1,8 @@
 <ion-view>
   <ion-nav-title>{{stockCtrl.stock.Name}}</ion-nav-title>
   <ion-content>
-    <ion-spinner class="absolute-center" icon="spiral" ng-if="stockCtrl.loading"></ion-spinner>
+    <ion-spinner class="absolute-center" icon="ios" ng-if="stockCtrl.isIOS && stockCtrl.loading"></ion-spinner>
+    <ion-spinner class="absolute-center" icon="android" ng-if="stockCtrl.isAndroid && stockCtrl.loading"></ion-spinner>
     <span ng-if="!stockCtrl.loading">
     <div id="stock-symbol"><strong>Symbol: </strong>{{stockCtrl.stock.symbol}}</div>
     <div><strong>Ask: </strong>{{stockCtrl.stock.Ask}}</div>
