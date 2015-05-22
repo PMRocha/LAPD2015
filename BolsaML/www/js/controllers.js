@@ -103,6 +103,10 @@ angular.module('starter.controllers', [])
     });
   };
 
+  watchlistCtrl.getAllBySymbol = function (str) {
+    console.log(str);
+  }
+
   function fetchData(stocks) {
     var url = "http://query.yahooapis.com/v1/public/yql";
 

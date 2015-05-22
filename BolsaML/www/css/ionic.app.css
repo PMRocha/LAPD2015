@@ -7650,6 +7650,8 @@ img {
 .list .badge {
   display: inline-block;
   width: 80px;
+  min-height: 20px;
+  line-height: 20px;
   text-align: center; }
 
 /* Stock Template Page */
