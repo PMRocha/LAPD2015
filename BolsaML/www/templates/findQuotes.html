@@ -1,5 +1,18 @@
 <ion-view view-title="Find Quotes">
-  <ion-content>
-  	<ion-search class="search-wrapper-light" placeholder="Search a quote" min-length="1" model="stock" source=""></ion-search>
+  <ion-content scroll="false">
+  	<form novalidate ng-submit="findQuotesCtrl.searchQuote(quote)">
+		<label class="item item-input">
+			<i class="icon ion-search placeholder-icon"></i>
+			<input type="text" placeholder="Insert a Quote Symbol" ng-model="quote">
+		</label>
+	</form novalidate class="simple-form">
+	<ion-content class="find-quote-container" ng-show="findQuotesCtrl.quoteFound && !findQuotesCtrl.loading">
+		{{findQuotesCtrl.quote}}
+	</ion-content>
+	<div ng-show="!findQuotesCtrl.quoteFound && !findQuotesCtrl.loading">
+		<span class="absolute-center no-symbol-found-span">No Symbol Was Found</span>
+	</div>
+    <ion-spinner class="absolute-center" icon="ios" ng-if="findQuotesCtrl.isIOS && findQuotesCtrl.loading"></ion-spinner>
+    <ion-spinner class="absolute-center" icon="android" ng-if="findQuotesCtrl.isAndroid && findQuotesCtrl.loading"></ion-spinner>
   </ion-content>
 </ion-view>

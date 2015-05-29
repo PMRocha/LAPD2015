@@ -50,6 +50,53 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('FindQuotesCtrl', function($http) {
+  var findQuotesCtrl = this;
+
+  findQuotesCtrl.isIOS = ionic.Platform.isIOS();
+  findQuotesCtrl.isAndroid = ionic.Platform.isAndroid();
+  findQuotesCtrl.loading = false;
+  findQuotesCtrl.quoteFound = false;
+
+  findQuotesCtrl.searchQuote = function (quote) {
+    findQuotesCtrl.loading = true;
+
+    if(!quote) {
+      findQuotesCtrl.loading = false;
+      findQuotesCtrl.quoteFound = false;
+    } else {
+      fetchData(quote)
+        .success(fetchSuccess)
+        .error(fetchError);
+    }
+  }; 
+
+  function fetchData(symbol) {
+    var url = "http://query.yahooapis.com/v1/public/yql";
+    var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
+
+    url = url + "?q=" + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env";
+
+    return $http.get(url);
+  }
+
+  function fetchSuccess(data) {
+    findQuotesCtrl.quote = data.query.results.quote;
+
+    findQuotesCtrl.loading = false;
+
+    if (findQuotesCtrl.quote.Currency && findQuotesCtrl.quote.Name) {
+      findQuotesCtrl.quoteFound = true;
+    } else {
+      findQuotesCtrl.quoteFound = false;
+    }
+  }
+
+  function fetchError(error) {
+    console.error(error);
+  }
+})
+
 .controller('WatchlistCtrl', function($http, $timeout) {
   var watchlistCtrl = this;
 
@@ -74,12 +121,14 @@ angular.module('starter.controllers', [])
     { symbol: 'HOT' }
   ];
 
+  var polingTimeInMilliseconds = 2000;
+  
   (function tick() {
 
     fetchData(stocks)
       .success(fetchSuccess)
       .error(fetchError);
-      $timeout(tick, 2000);
+      $timeout(tick, polingTimeInMilliseconds);
     })();
 
   watchlistCtrl.switchBadge = function (stocks) {

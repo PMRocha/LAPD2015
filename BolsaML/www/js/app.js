@@ -34,7 +34,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     url: "/findQuotes",
     views: {
       'menuContent': {
-        templateUrl: "templates/findQuotes.html"
+        templateUrl: "templates/findQuotes.html",
+        controller: "FindQuotesCtrl as findQuotesCtrl"
       }
     }
   })

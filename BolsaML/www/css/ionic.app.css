@@ -7641,11 +7641,11 @@ img {
   bottom: 0;
   right: 0; }
 
+/* Absolute Center CSS Spinner END */
 #chart {
   max-width: 100%;
   margin: 1%; }
 
-/* Absolute Center CSS Spinner END */
 /* Watchlist */
 .list .badge {
   display: inline-block;
@@ -7655,3 +7655,9 @@ img {
   text-align: center; }
 
 /* Stock Template Page */
+/* Find Quotes Page */
+.find-quote-container {
+  margin-top: 47px; }
+
+.no-symbol-found-span {
+  width: 150px; }
