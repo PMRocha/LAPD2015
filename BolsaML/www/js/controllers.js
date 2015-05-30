@@ -58,6 +58,8 @@ angular.module('starter.controllers', [])
   findQuotesCtrl.loading = false;
   findQuotesCtrl.quoteFound = false;
 
+  findQuotesCtrl.timespan = "1d";
+
   findQuotesCtrl.searchQuote = function (quote) {
     findQuotesCtrl.loading = true;
 
@@ -69,7 +71,11 @@ angular.module('starter.controllers', [])
         .success(fetchSuccess)
         .error(fetchError);
     }
-  }; 
+  };
+
+  findQuotesCtrl.switchTimespan = function (value) {
+    findQuotesCtrl.timespan = value;
+  }
 
   function fetchData(symbol) {
     var url = "http://query.yahooapis.com/v1/public/yql";

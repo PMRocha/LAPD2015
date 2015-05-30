@@ -7,7 +7,58 @@
 		</label>
 	</form novalidate class="simple-form">
 	<ion-content class="find-quote-container" ng-show="findQuotesCtrl.quoteFound && !findQuotesCtrl.loading">
-		{{findQuotesCtrl.quote}}
+		<div id="find-quote-info">
+		<p id="find-quote-symbol">{{findQuotesCtrl.quote.Name}} ({{findQuotesCtrl.quote.symbol | uppercase}})</p>
+		<span id="find-quote-lastvalue"><strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></span>
+		<span style="color: #387ef5" ng-if="findQuotesCtrl.quote.Change[0] == '+'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
+		<span style="color: #ef473a" ng-if="findQuotesCtrl.quote.Change[0] == '-'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
+		<hr>
+		<div class="row">
+	  		<div class="col">
+				<p>Ask: <strong>{{findQuotesCtrl.quote.Ask}}</strong></p><hr>
+				<p>Last Price: <strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></p><hr>
+				<p ng-if="findQuotesCtrl.quote.Change[0] == '+'">Change: <strong style="color: #387ef5">{{findQuotesCtrl.quote.Change}}</strong></p>
+				<p ng-if="findQuotesCtrl.quote.Change[0] == '-'">Change: <strong style="color: #ef473a">{{findQuotesCtrl.quote.Change}}</strong></p>
+				<hr>
+				<p>Volume: <strong>{{findQuotesCtrl.quote.Volume}}</strong></p><hr>
+				<p>Market Cap: <strong>{{findQuotesCtrl.quote.MarketCapitalization}}</strong></p><hr>
+				<p>Day's Range: <strong>{{findQuotesCtrl.quote.DaysRange}}</strong></p><hr>
+			</div>
+			<div class="col">
+				<p>Bid: <strong>{{findQuotesCtrl.quote.Bid}}</strong></p><hr>
+				<p>Last Trade: <strong>{{findQuotesCtrl.quote.LastTradeDate}}</strong></p><hr>
+				<p ng-if="findQuotesCtrl.quote.Change[0] == '+'">Change(%): <strong style="color: #387ef5">{{findQuotesCtrl.quote.ChangeinPercent}}</strong></p>
+				<p ng-if="findQuotesCtrl.quote.Change[0] == '-'">Change(%): <strong style="color: #ef473a">{{findQuotesCtrl.quote.ChangeinPercent}}</strong></p>
+				<hr>
+				<p>Avg Volume: <strong>{{findQuotesCtrl.quote.AverageDailyVolume}}</strong></p><hr>
+				<p>1Y Target Price: <strong>{{findQuotesCtrl.quote.OneyrTargetPrice}}</strong></p><hr>
+				<p>1Y Range: <strong>{{findQuotesCtrl.quote.YearRange}}</strong></p><hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-25"></div>
+			<div class="col-50">
+				<button class="button button-block button-light">
+					Buy ({{findQuotesCtrl.quote.Ask}})
+				</button>
+			</div>
+			<div class="col-25"></div>
+		</div>
+		</div>
+		<div class="row">
+			<img id="find-quote-chart" ng-src="http://chart.finance.yahoo.com/z?s={{findQuotesCtrl.quote.symbol}}&amp;t={{findQuotesCtrl.timespan}}&amp;q=l&amp;l=off&amp;z=l&amp;a=v" alt="quote chart"/>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="button-bar button-light">
+					<button class="button button-block button-light" ng-click="findQuotesCtrl.switchTimespan('1d')">1D</button>
+					<button class="button button-block button-light" ng-click="findQuotesCtrl.switchTimespan('5d')">5D</button>
+					<button class="button button-block button-light" ng-click="findQuotesCtrl.switchTimespan('3m')">3M</button>
+					<button class="button button-block button-light" ng-click="findQuotesCtrl.switchTimespan('6m')">6M</button>
+					<button class="button button-block button-light" ng-click="findQuotesCtrl.switchTimespan('1y')">1Y</button>
+				</div>
+			</div>
+		</div>
 	</ion-content>
 	<div ng-show="!findQuotesCtrl.quoteFound && !findQuotesCtrl.loading">
 		<span class="absolute-center no-symbol-found-span">No Symbol Was Found</span>

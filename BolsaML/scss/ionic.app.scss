@@ -87,6 +87,24 @@ img {
 .find-quote-container {
   margin-top: 47px;
 }
+#find-quote-info {
+  margin-left: 2%;
+  margin-right: 2%;
+}
 .no-symbol-found-span {
   width: 150px;
+}
+#find-quote-symbol {
+  margin-top: 5px;
+  font-size: 1.5em;
+}
+#find-quote-lastvalue {
+  font-size: 1.9em;
+}
+
+#find-quote-chart {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
 }
