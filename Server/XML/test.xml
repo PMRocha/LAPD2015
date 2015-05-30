@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Finance>
+  <Users>
+    <User>
+      <Username>str1234</Username>
+      <Password>str1234</Password>
+      <wallet cur="str1234">12</wallet>
+      <Followed_Companies>
+        <Followed_Company>
+          <symbol favourite="str1234">str1234</symbol>
+          <sell_rule>
+            <ceiling cur="str1234">3.14159</ceiling>
+            <floor cur="str1234">3.14159</floor>
+          </sell_rule>
+          <buy_rule>
+            <ceiling cur="str1234">3.14159</ceiling>
+            <floor cur="str1234">3.14159</floor>
+          </buy_rule>
+          <stocks_owned>3.14159</stocks_owned>
+        </Followed_Company>
+      </Followed_Companies>
+    </User>
+  </Users>
+  <Companies>
+    <Company>
+      <Company_name>str1234</Company_name>
+      <Company_symbol>str1234</Company_symbol>
+      <stocks_records>
+        <stock date="str1234" cur="str1234">3.14159</stock>
+      </stocks_records>
+    </Company>
+  </Companies>
+</Finance>

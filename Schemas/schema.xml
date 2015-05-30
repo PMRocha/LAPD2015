@@ -7,7 +7,7 @@
 			<Followed_Companies>
 				<Followed_Company>
 					<Symbol favourite="true">COM</Symbol>
-					<Sell_rule quantity=10>
+					<Sell_rule quantity="10">
 						<Ceiling cur="US$">
 						30	
 						</Ceiling>
@@ -15,7 +15,7 @@
 						20
 						</Floor>
 					</Sell_rule>
-					<Buy_rule quantity=10>
+					<Buy_rule quantity="10">
 						<Ceiling cur="US$">
 						15	
 						</Ceiling>
@@ -39,7 +39,7 @@
 			<Followed_Companies>
 				<Followed_Company>
 					<Symbol favourite="true">COM</Symbol>
-					<Sell_rule quantity=10>
+					<Sell_rule quantity="10">
 						<Ceiling cur="US$">
 						30	
 						</Ceiling>
@@ -47,7 +47,7 @@
 						20
 						</Floor>
 					</Sell_rule>
-					<Buy_rule quantity=10>
+					<Buy_rule quantity="10">
 						<Ceiling cur="US$">
 						15	
 						</Ceiling>
@@ -64,7 +64,7 @@
 				</Followed_Company>
 				<Followed_Company>
 					<Symbol favourite="true">ISR</Symbol>
-					<Sell_rule quantity=10>
+					<Sell_rule quantity="10">
 						<Ceiling cur="US$">
 						30	
 						</Ceiling>
@@ -72,7 +72,7 @@
 						20
 						</Floor>
 					</Sell_rule>
-					<Buy_rule quantity=10>
+					<Buy_rule quantity="10">
 						<Ceiling cur="US$">
 						15	
 						</Ceiling>
@@ -96,7 +96,7 @@
 			<Followed_Companies>
 				<Followed_Company>
 					<Symbol favourite="true">COM</Symbol>
-					<Sell_rule quantity=10>
+					<Sell_rule quantity="10">
 						<Ceiling cur="US$">
 						30	
 						</Ceiling>
@@ -104,7 +104,7 @@
 						20
 						</Floor>
 					</Sell_rule>
-					<Buy_rule quantity=10>
+					<Buy_rule quantity="10">
 						<Ceiling cur="US$">
 						15	
 						</Ceiling>

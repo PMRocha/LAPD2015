@@ -9,6 +9,8 @@
 \usepackage[utf8]{inputenc}
 %\usepackage[latin1]{inputenc}
 
+\usepackage[toc,page]{appendix}
+
 \usepackage[T1]{fontenc}        % T1 fonts
 \usepackage{lmodern}            % fonts
 \usepackage[sc]{mathpazo}       % Use the Palatino font
@@ -29,16 +31,14 @@
 \renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
 \renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
 
-% \usepackage{titlesec}           % Allows customization of titles
+% \usepackage{titlesec}          % Allows customization of titles
 % \renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
 % \renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
 % \titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
 % \titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
 
 \usepackage[pdftex]{hyperref}
-\hypersetup{%
-    a4paper = true,              % use A4 paper 
-    bookmarks = true,            % make bookmarks 
+\hypersetup{
     colorlinks = true,           % false: boxed links; true: colored links
     pdffitwindow = false,        % page fit to window when opened
     pdfpagemode = UseNone,       % do not show bookmarks
@@ -56,9 +56,9 @@
 \pagestyle{fancy}                % pages have headers and footers
 \fancyhead{}                     % Blank out the default header
 \fancyfoot{}                     % Blank out the default footer
-\fancyhead[LO,RE]{Exemplo de artigo em \LaTeX} % Custom header text
+\fancyhead[LO,RE]{BolsaML - A Stock Market Simulator Mobile Application} % Custom header text
 \fancyhead[RO,LE]{\thepage}      % Custom header text
-\fancyfoot[RO,LE]{Grupo xx, \today} % Custom footer text
+\fancyfoot[RO,LE]{Grupo 6, 30th March 2015} % Custom footer text
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
@@ -78,13 +78,17 @@
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------
 
-\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{Article Title}} % Article title
+\title{\vspace{-15mm}\fontsize{24pt}{10pt}\selectfont\textbf{BolsaML - A Stock Market Simulator Mobile Application}} % Article title
 
-\author{First Author\\
-\small \texttt{first@school.edu}\\
+\author{André Silva\\
+\small \texttt{ei12133@fe.up.pt}\\
 \and
-Second Author\\
-\small \texttt{noremembers@school.edu}
+João Nadais\\
+\small \texttt{ei11147@fe.up.pt}
+\vspace{-5mm}
+\and
+Pedro Rocha\\
+\small \texttt{ei11078@fe.up.pt}
 \vspace{-5mm}
 }
 
@@ -102,161 +106,168 @@ Second Author\\
 %----------------------------------------------------------------------------------------
 
 \begin{abstract}
-O \svg{} é uma linguagem XML que descreve gráficos de duas dimensões.
-A tecnologia \svg{} é usada aqui para representar sinópticos e
-permitir a interação do utilizador do sistema através de uma
-interface Web.  \lipsum[1]
+With the ever growing community interested in the stock exchange market, there isn't a real offer of
+applications capable of simulating and advice when to purchase stocks. With BolsaML is created a simulated
+stock exchange market based on real data from NYSE and NASDAQ, to help people introduce themselves to the trade craft.
+The application works based on a two-step process: firstly a statistical analysis of the past stocks prices, 
+secondly searching news for negative/positive feelings towards a specific company. All of this is made easy
+with the use f a XML Schema that enables a fast access to data and quick full text search.
+The application will be developed using a Client-Server design pattern using Ionic, Node.JS and eXistDB.
 \end{abstract}
 
 %----------------------------------------------------------------------------------------
 %	ARTICLE CONTENTS
 %----------------------------------------------------------------------------------------
 
-\section{Introdução}\label{sec:intro}
+\section{Introduction}\label{sec:intro}
 
-Os sistemas \scada{} (\emph{Supervisory Control And Data Acquisition})
-são responsáveis pela recolha e análise de informação em tempo real.
-Atualmente estes sistemas recorrem às mais avançadas tecnologias de
-computação e comunicação para monitorizar e controlar estruturas ou
-equipamentos industriais dispersos geograficamente e recorrem a
-interfaces gráficas para tornar a interação com o utilizador mais
-amigável\footnote{Exemplo de artigo retirado de uma submissão à
-  Conferência XATA2006, mas sem usar LLNCS.}.
+This document serves as a presentation of the proposed project, an analysis of the state of the art and comparison of the proposed application with other in the market, and, from a more technical standpoint, the XML language schema that will be used in the database and the overall architecture of said application.
 
-\lipsum[2]
+Nowadays the stock exchange market is used by an ever increasing number of people
+who are looking for a chance to get rich. On the other hand a lot of these new users
+lack the ability to correctly analyze the fluxes of the market and end up making
+the wrong decisions for that time. The application in development aims to ease 
+this analysis so that a new user can maximize their profit trading stocks.
 
-Para além desta introdução, onde se caracterizou o problema abordado
-por este projeto, refere-se na Secção~\ref{sec:sota} o
-estado da arte e são descritos os trabalhos relacionados com a
-visualização de diagramas sinópticos de sistemas \scada{} na
-\textit{Web}. 
+The BolsaML application simulates the trade of stocks in a closed environment
+and to achieve this it uses XML technologies in order to easily store and
+analyze a large amount of data referring to the NYSE (New York Stock Exchange) and NASDAQ (National Association of Securities Dealers Automated Quotations) markets.
+The application will be able of making recommendations on which are the best
+times to buy or sell stocks from a determined company the user is following.
+
+Due to the work an application like this entails there isn't a great number
+of apps like this, also, due to not using XML technologies, these apps 
+make a more superficial market analysis, a thing BolsaMl will improve on. 
+
+%------------------------------------------------
+\section{State of the Art}\label{sec:sota}
+
+The stock market is an area of interest to a lot of people, in the passing months, we noticed a raise in the number of stock market simulators that are available for computers but not so much for smartphones. Since mobile applications represent a very big market of consumers, we intend to develop an app for Android and iOS and we have found a similar application that takes advantage of the Yahoo Finance API to get the information on the stock market with a 15 to 20 minutes difference. The app is called "Stock Market Simulator" \cite{kn:stockmarketsimapp} and it can be found in several other versions like "Plus" and "Lite". This application gives the user 10.000 dollars that he can use to invest in the stock market, it also allows to define limits to sell or buy a given quote, so it's quite similar to what we are trying to accomplish. Although being similar it falls short of what we are trying to accomplish since it offers no prediction or aid to the user. 
+
+We also intend to predict when to sell or buy a given stock, we have found two papers that use different techniques to do that. The first one "Stock	Price	Forecasting	Using	Information	from	Yahoo	Finance	and Google	Trend" \cite{kn:paperforecastingyahoogoogle} uses Google Trend and Yahoo Finance APIs combined to predict the stock price, the other one "Textual Analysis of Stock Market Prediction Using Financial News Articles" \cite{kn:papertextanalysisprediction} uses text analysis and machine learning algorithms in order to extract relevant information concerning the quotes to predict the variation of the price.
+
+%------------------------------------------------
+\section{Motivation}
+
+The motivation for this project comes from a long standing interest in the stock exchange
+by the authors of the article. This interest originates from a fascination with the subject
+based in the some what "weird" nature of the stocks market. By selling and buying
+things you never see from people you will never meet you can make a life for yourself
+or even, if you are lucky or extremely talented get extremely rich.
+
+And knowing this we though that there should be an easier way to get in the market, and with that idea BolsaML was born.
 
 %------------------------------------------------
 
-\section{\svg}\label{sec:sota}
+\section{BolsaML}\label{sec:application}
 
-Nos últimos tempos têm surgido diversas soluções, apresentadas por
-empresas do sector Automação de Sistemas para a disponibilização de
-sistemas \scadadms{} na \textit{Web}.
+Like the previously referenced applications BolsaML will try and predict the
+best time to purchase or sell stocks and will do so in a two step process:
 
-\emph{Scalable Vector Graphics} é uma linguagem em formato XML que
-descreve gráficos de duas dimensões. 
-Este formato padronizado pela W3C (\emph{World Wide Web Consortium})
-é livre de patentes ou direitos de autor e está totalmente
-documentado, à semelhança de outros W3C standards~\cite{kn:svgdoc}.
-
-Sendo uma linguagem XML, o \svg{} herda uma série de vantagens: a
-possibilidade de transformar \svg{} usando técnicas como XSLT, de embeber
-\svg{} em qualquer documento XML usando \textit{namespaces} ou até de 
-estilizar \svg{} recorrendo a CSS (\emph{Cascade Style Sheets}). 
-De uma forma geral, pode dizer-se que \svg{}s interagem bem com as
-atuais tecnologias ligadas ao XML e à Web, tal como referido
-em~\cite{kn:svgibm,kn:svgw3c}.
-
-\subsection{Batik \svg{} Toolkit} \label{batik} 
-
-Batik é um conjunto de bibliotecas baseadas em \textit{Java} que
-permitem o uso de imagens \svg{} (visualização, geração ou
-manipulação) em aplicações ou \textit{applets} \cite{kn:batikarchitecture}.  
-O projeto Batik destina-se a fornecer ao programador alguns módulos
-que permitem desenvolver soluções especificas usando \svg. 
-
-\lipsum[3]
-
-%------------------------------------------------
-
-\section{Visualizador de Sinópticos}\label{sec:application}
-
-A arquitetura do visualizador assenta sobre os seguintes conceitos base \cite{kn:zpmd}:
 \begin{compactitem}
-\item \textbf{Componentes} --- Suspendisse auctor mattis augue \emph{push};
-\item \textbf{Praesent} --- Sit amet sem maecenas eleifend facilisis leo;
-\item \textbf{Pellentesque} --- Habitant morbi tristique senectus et netus.
+\item \textbf{Statistical Analysis} --- the analysis of past stock values for the company;
+\item \textbf{Interpreting News} --- looking negative/positive references in news.
 \end{compactitem}
 
-\lipsum[4]
+This two-step process increases the accuracy of the predictions made by the application
+putting it ahead of the rest of the apps in this area.
 
-Apresenta-se de seguida um exemplo de equação, completamente fora do contexto:
-\begin{eqnarray}
-CIF_1: \hspace*{5mm}F_0^j(a) &=& \frac{1}{2\pi \iota} \oint_{\gamma} \frac{F_0^j(z)}{z - a} dz\\
-CIF_2: \hspace*{5mm}F_1^j(a) &=& \frac{1}{2\pi \iota} \oint_{\gamma} \frac{F_0^j(x)}{x - a} dx \label{eq:cif}
-\end{eqnarray}
+\subsection{Statistical Analysis}
 
-Na Equação~\ref{eq:cif} \lipsum[5]
+The app server will update itself every 5/10 seconds in order to always have the most up to date database.
+The frequency of these updates will lead to a very large amount of data being stored on the database using XML technologies.
 
-\subsection{Exemplo de Figura}
+With an easy access to the information the app will have the capability to quickly make a more in-depth
+analysis of the records than other applications on the market which,
+in and of itself, puts BolsaML ahead of the curve.
 
-É apresentado na Figura~\ref{fig:arch} %da página~\pageref{fig:arch}
-um exemplo de figura flutuante que ficará onde o \LaTeX\ entender.
+With the results of this analysis it will be generated the probable fluctuation of stocks prices
+so that the user has a friendly and easy way to make their decision, whether to invest, sell or wait.
+At the same time the app will make its own suggestion on which action the user should do.
 
-\begin{figure}
-  \begin{center}
-    \leavevmode
-    \includegraphics[width=0.45\textwidth]{puzzle}
-    \caption{Arquitetura da Solução Proposta}
-    \label{fig:arch}
-  \end{center}
-\end{figure}
 
-\lipsum[6]
+\subsection{Interpreting News}
 
-\subsection{Exemplo de Tabela}
+To add to the in-depth statistical analysis BolsaML will also feature full text search capabilities
+in order to increase the accuracy of its predictions.
 
-É apresentado na Tabela~\ref{tab:exemplo1} um exemplo de tabela.
-
-\begin{table}[H]
-  \centering
-  \caption{Uma Tabela Simples}
-  \begin{tabular}{| l | p{45mm} |}
-    \hline
-    \textbf{Acrónimo} & \textbf{Significado}\\
-    \hline
-    \hline
-    ADT   & \emph{Abstract Data Type}\\\hline
-    ANDF  & \emph{Architecture-Neutral Distribution Format}\\\hline
-    API   & \emph{Application Programming Interface}\\
-    \hline
-  \end{tabular}
-  \label{tab:exemplo1}
-\end{table}
-
-\lipsum[7]
-
-% \begin{table}
-%   \centering
-%   \caption{Tabela Exemplo}
-% \begin{tabular}{|c|r@{.}lr@{.}lr@{.}l||r|}
-% 	\hline
-% \multicolumn{8}{|c|}
-% 	{\rule[-3mm]{0mm}{8mm}Iteração $k$ de $f(x_n)$} \\
-% \textbf{\em k}
-% 	& \multicolumn{2}{c}{$x_1^k$}
-% 	& \multicolumn{2}{c}{$x_2^k$}
-% 	& \multicolumn{2}{c||}{$x_3^k$}
-% 	& comentários \\ \hline \hline
-% 0   & -0&3                 & 0&6                 &  0&7   & - \\
-% 1   &  0&47102965 & 0&04883157 & -0&53345964  & $\delta<\epsilon$ \\
-% 2   &  0&49988691 & 0&00228830 & -0&52246185  & $\delta < \varepsilon$ \\
-% 3   &  0&49999976 & 0&00005380 & -0&523656   &   $N$ \\
-% 4   &  0&5                 & 0&00000307 & -0&52359743  & \\
-% \vdots	& \multicolumn{2}{c}{\vdots}
-% 	& \multicolumn{2}{c}{$\ddots$}
-% 	& \multicolumn{2}{c||}{\vdots}  & \\
-% 7   &  0&5   & 0&0    & \textbf{-0}&\textbf{52359878}
-% 		 & $\delta<10^{-8}$ \\ \hline
-% \end{tabular}
-%   \label{tab:exemplo2}
-% \end{table}
+In order to achieve this the database will store news reports about all the companies in the database.
+These records will be used simultaneously as the statistical analysis is made to complement it.
+For example if a company has a great track record and statistically would be a great investment,
+it might not be a sound time to invest if there are negative reports appearing, on the other hand
+it might not be the best time to sell stocks if there is a lot of positive press around the company.
 
 %------------------------------------------------
 
-\section{Conclusões}\label{sec:conclusions}
+\section{XML Language Schema}
 
-Neste artigo abordou-se o desenvolvimento de um protótipo, com vista a
-estudar a adequadibilidade da tecnologia \svg{} à visualização de
-sinópticos na \textit{Web}.
+The images referenced in this section are also in an annex for an easier view.
 
-\lipsum[8]
+The application will have a XML-enabled database where all the information will be stored. The Schema will be divided in two main tags, firstly the \textit{Users} tag is where
+will be stored the information relevant to the user. The second main tag is \textit{Companies}
+where will be stored the information referring to the companies in the NYSE and NASDAQ.
+
+When developing the schema we had to have in consideration the domain where the app would be used. In order to have the app with all the information information and with that information easy to access we used the symbol of the company to identify it (used in the Stock Exchange Market). Besides that we also need to take in consideration the news publication date to keep the user up to par with the market.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{User.JPG}
+\caption{User Structure}
+\label{fig:User}
+\end{figure}
+
+In this picture (\ref{fig:User}) is demonstrated the structure of the \textit{User} tag where is
+stored the information about each user, their username, password, wallet, and a list of the
+companies they are following, and some rules for an automatic purchase or sell of stocks.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{company.JPG}
+\caption{Companies Structure}
+\label{fig:Company}
+\end{figure}
+
+This picture (\ref{fig:Company}) demonstrates the structure of the \textit{Company} tag where are stored the news relating to the company, their stocks records, name and symbol.
+
+%------------------------------------------------
+
+\section{Project Planning}
+
+Over the next 4 weeks the project will be concluded and the distribution of tasks will be the following:
+
+
+\begin{compactitem}
+\item \textbf{30/04} --- Second Presentation;
+\item \textbf{27/04-09/05} --- eXist database implementation;
+\item \textbf{05/05-03/06} --- Development of the Server-Side of the application;
+\item \textbf{01/05-20/05} --- Finishing the Client-Side Application;
+\item \textbf{21/05-03/06} --- Testing the application;
+\item \textbf{04/06} --- Final Project Presentation;
+\end{compactitem}
+
+%------------------------------------------------
+
+\section{Architecture}\label{sec:architecture}
+
+The application is designed using the Client-Server design pattern so, the client side of the application will communicate with the server and, in turn, the server will communicate with the database, this way there is no communication directly between the database and the client avoiding some problems, for example a user trying to access something he shouldn't.
+The application architecture is divided in two main parts: Client and Server. 
+
+\subsection{Client Side}
+
+The client side of the application is being developed using the Ionic framework that creates a web application with an user-friendly interface. By using this framework the application can be deployed seamlessly to android and iOS and, at the same time, work as a web-app with the possibility of being used on a normal browser.
+
+\subsection{Server Side}
+
+The server side of the application is being developed using Node.js in order to have an easy communication with the client side application. Besides that it makes easy to make the application secure and has a module to communicate with the eXistdb database the application will have.
+
+
+These two technologies were chosen to ease the development of the app and at the same time respecting standards regarding not only UX(User Experience) and UI(User Interface) but also security.
+
+%------------------------------------------------
+
+\section{Conclusions}\label{sec:conclusions}
+
+With this paper was made an approach to the BolsaML application not only describing and comparing the state of the art with the application being developed. In addition to that it was also made an analysis of the design patterns and technologies that will be used in the development of the application.
 
 %----------------------------------------------------------------------------------------
 %	REFERENCE LIST
@@ -273,6 +284,34 @@ sinópticos na \textit{Web}.
 
 %----------------------------------------------------------------------------------------
 
+\newpage
+\newpage
+
+\begin{appendices}
+
+Pictures of the Schema Developed
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{followed_companies.PNG}
+\caption{Followed Companies Structure}
+\label{fig:followed_companies}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{User.PNG}
+\caption{User Structure}
+\label{fig:user_structure}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=90mm]{Company.PNG}
+\caption{Companies Structure}
+\label{fig:company_structure}
+\end{figure}
+
+\end{appendices}
+
 \end{document}
-
-
