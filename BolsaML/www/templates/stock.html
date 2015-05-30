@@ -4,62 +4,120 @@
     <ion-spinner class="absolute-center" icon="ios" ng-if="stockCtrl.isIOS && stockCtrl.loading"></ion-spinner>
     <ion-spinner class="absolute-center" icon="android" ng-if="stockCtrl.isAndroid && stockCtrl.loading"></ion-spinner>
     <span ng-if="!stockCtrl.loading">
-    <div id="stock-symbol"><strong>Symbol: </strong>{{stockCtrl.stock.symbol}}</div>
-    <div><strong>Ask: </strong>{{stockCtrl.stock.Ask}}</div>
-    <div><strong>Bid: </strong>{{stockCtrl.stock.Bid}}</div>
-    <div><strong>AverageDailyVolume: </strong>{{stockCtrl.stock.AverageDailyVolume}}</div>
-    <div><strong>BookValue: </strong>{{stockCtrl.stock.BookValue}}</div>
-    <div><strong>Change_PercentChange: </strong>{{stockCtrl.stock.Change_PercentChange}}</div>
-    <div><strong>Change: </strong>{{stockCtrl.stock.Change}}</div>
-    <div><strong>Currency: </strong>{{stockCtrl.stock.Currency}}</div>
-    <div><strong>DividendShare: </strong>{{stockCtrl.stock.DividendShare}}</div>
-    <div><strong>LastTradeDate: </strong>{{stockCtrl.stock.LastTradeDate}}</div>
-    <div><strong>EarningsShare: </strong>{{stockCtrl.stock.EarningsShare}}</div>
-    <div><strong>EPSEstimateCurrentYear: </strong>{{stockCtrl.stock.EPSEstimateCurrentYear}}</div>
-    <div><strong>EPSEstimateNextYear: </strong>{{stockCtrl.stock.EPSEstimateNextYear}}</div>
-    <div><strong>EPSEstimateNextQuarter: </strong>{{stockCtrl.stock.EPSEstimateNextQuarter}}</div>
-    <div><strong>DaysLow: </strong>{{stockCtrl.stock.DaysLow}}</div>
-    <div><strong>DaysHigh: </strong>{{stockCtrl.stock.DaysHigh}}</div>
-    <div><strong>YearLow: </strong>{{stockCtrl.stock.YearLow}}</div>
-    <div><strong>YearHigh: </strong>{{stockCtrl.stock.YearHigh}}</div>
-    <div><strong>MarketCapitalization: </strong>{{stockCtrl.stock.MarketCapitalization}}</div>
-    <div><strong>EBITDA: </strong>{{stockCtrl.stock.EBITDA}}</div>
-    <div><strong>ChangeFromYearLow: </strong>{{stockCtrl.stock.ChangeFromYearLow}}</div>
-    <div><strong>PercentChangeFromYearLow: </strong>{{stockCtrl.stock.PercentChangeFromYearLow}}</div>
-    <div><strong>ChangeFromYearHigh: </strong>{{stockCtrl.stock.ChangeFromYearHigh}}</div>
-    <div><strong>PercebtChangeFromYearHigh: </strong>{{stockCtrl.stock.PercebtChangeFromYearHigh}}</div>
-    <div><strong>LastTradeWithTime: </strong>{{stockCtrl.stock.LastTradeWithTime}}</div>
-    <div><strong>LastTradePriceOnly: </strong>{{stockCtrl.stock.LastTradePriceOnly}}</div>
-    <div><strong>DaysRange: </strong>{{stockCtrl.stock.DaysRange}}</div>
-    <div><strong>FiftydayMovingAverage: </strong>{{stockCtrl.stock.FiftydayMovingAverage}}</div>
-    <div><strong>TwoHundreddayMovingAverage: </strong>{{stockCtrl.stock.TwoHundreddayMovingAverage}}</div>
-    <div><strong>ChangeFromTwoHundreddayMovingAverage: </strong>{{stockCtrl.stock.ChangeFromTwoHundreddayMovingAverage}}</div>
-    <div><strong>PercentChangeFromTwoHundreddayMovingAverage: </strong>{{stockCtrl.stock.PercentChangeFromTwoHundreddayMovingAverage}}</div>
-    <div><strong>ChangeFromFiftydayMovingAverage: </strong>{{stockCtrl.stock.ChangeFromFiftydayMovingAverage}}</div>
-    <div><strong>PercentChangeFromFiftydayMovingAverage: </strong>{{stockCtrl.stock.PercentChangeFromFiftydayMovingAverage}}</div>
-    <div><strong>Name: </strong>{{stockCtrl.stock.Name}}</div>
-    <div><strong>Open: </strong>{{stockCtrl.stock.Open}}</div>
-    <div><strong>PreviousClose: </strong>{{stockCtrl.stock.PreviousClose}}</div>
-    <div><strong>ChangeinPercent: </strong>{{stockCtrl.stock.ChangeinPercent}}</div>
-    <div><strong>PriceSales: </strong>{{stockCtrl.stock.PriceSales}}</div>
-    <div><strong>PriceBook: </strong>{{stockCtrl.stock.PriceBook}}</div>
-    <div><strong>ExDividendDate: </strong>{{stockCtrl.stock.ExDividendDate}}</div>
-    <div><strong>PERatio: </strong>{{stockCtrl.stock.PERatio}}</div>
-    <div><strong>DividendPayDate: </strong>{{stockCtrl.stock.DividendPayDate}}</div>
-    <div><strong>PriceEPSEstimateCurrentYear: </strong>{{stockCtrl.stock.PriceEPSEstimateCurrentYear}}</div>
-    <div><strong>PriceEPSEstimateNextYear: </strong>{{stockCtrl.stock.PriceEPSEstimateNextYear}}</div>
-    <div><strong>Symbol: </strong>{{stockCtrl.stock.Symbol}}</div>
-    <div><strong>ShortRatio: </strong>{{stockCtrl.stock.ShortRatio}}</div>
-    <div><strong>LastTradeTime: </strong>{{stockCtrl.stock.LastTradeTime}}</div>
-    <div><strong>OneyrTargetPrice: </strong>{{stockCtrl.stock.OneyrTargetPrice}}</div>
-    <div><strong>Volume: </strong>{{stockCtrl.stock.Volume}}</div>
-    <div><strong>YearRange: </strong>{{stockCtrl.stock.YearRange}}</div>
-    <div><strong>StockExchange: </strong>{{stockCtrl.stock.StockExchange}}</div>
-    <div><strong>DividendYield: </strong>{{stockCtrl.stock.DividendYield}}</div>
-    <div><strong>PercentChange: </strong>{{stockCtrl.stock.PercentChange}}</div>
-    <br>
-    <img id="chart" ng-src="http://chart.finance.yahoo.com/z?s={{stockCtrl.stock.symbol}}&amp;t={{stockCtrl.timespan}}&amp;q=l&amp;l=off&amp;z=l&amp;a=v" ng-click="stockCtrl.switchTimespan()" alt="quote chart"/>
-	</span>
-	<br><br>
+        <div class="row">
+            <div class="col">
+                <p id="find-quote-symbol">{{stockCtrl.stock.Name}} ({{stockCtrl.stock.symbol | uppercase}})</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>Ask: <strong>{{stockCtrl.stock.Ask}}</strong></p><hr>
+                <p>Last Price: <strong>{{stockCtrl.stock.LastTradePriceOnly}}</strong></p><hr>
+                <p>Prev Close: <strong>{{stockCtrl.stock.PreviousClose}}</strong></p><hr>
+                <p ng-if="stockCtrl.stock.Change[0] == '+'">Change: <strong style="color: #387ef5">{{stockCtrl.stock.Change}}</strong></p>
+                <p ng-if="stockCtrl.stock.Change[0] == '-'">Change: <strong style="color: #ef473a">{{stockCtrl.stock.Change}}</strong></p>
+                <hr>
+                <p>Volume: <strong>{{stockCtrl.stock.Volume}}</strong></p><hr>
+                <p>Market Cap: <strong>{{stockCtrl.stock.MarketCapitalization}}</strong></p><hr>
+                <p>Day's Range: <strong>{{stockCtrl.stock.DaysRange}}</strong></p><hr>
+            </div>
+            <div class="col">
+                <p>Bid: <strong>{{stockCtrl.stock.Bid}}</strong></p><hr>
+                <p>Last Trade: <strong>{{stockCtrl.stock.LastTradeTime}}</strong></p><hr>
+                <p>Open: <strong>{{stockCtrl.stock.Open}}</strong></p><hr>
+                <p ng-if="stockCtrl.stock.Change[0] == '+'">Change(%): <strong style="color: #387ef5">{{stockCtrl.stock.ChangeinPercent}}</strong></p>
+                <p ng-if="stockCtrl.stock.Change[0] == '-'">Change(%): <strong style="color: #ef473a">{{stockCtrl.stock.ChangeinPercent}}</strong></p>
+                <hr>
+                <p>Avg Volume: <strong>{{stockCtrl.stock.AverageDailyVolume}}</strong></p><hr>
+                <p>1Y Target Price: <strong>{{stockCtrl.stock.OneyrTargetPrice}}</strong></p><hr>
+                <p>1Y Range: <strong>{{stockCtrl.stock.YearRange}}</strong></p><hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="button button-block button-light">
+                    Buy ({{stockCtrl.stock.Ask}})
+                </button>
+            </div>
+            <div class="col">
+                <button class="button button-block button-light">
+                    Sell ({{stockCtrl.stock.Bid}})
+                </button>
+            </div>
+        </div> 
+        <div class="row">
+            <img class="quote-chart" ng-src="http://chart.finance.yahoo.com/z?s={{stockCtrl.stock.symbol}}&amp;t={{stockCtrl.timespan}}&amp;q=l&amp;l=off&amp;z=l&amp;a=v" alt="quote chart"/>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="button-bar button-light">
+                    <button class="button button-block button-light" ng-click="stockCtrl.switchTimespan('1d')">1D</button>
+                    <button class="button button-block button-light" ng-click="stockCtrl.switchTimespan('5d')">5D</button>
+                    <button class="button button-block button-light" ng-click="stockCtrl.switchTimespan('3m')">3M</button>
+                    <button class="button button-block button-light" ng-click="stockCtrl.switchTimespan('6m')">6M</button>
+                    <button class="button button-block button-light" ng-click="stockCtrl.switchTimespan('1y')">1Y</button>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col" style="text-align:center">
+                <h4>Advanced Information</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>BookValue: <strong>{{stockCtrl.stock.BookValue}}</strong></p><hr>
+                <p>PERatio: <strong>{{stockCtrl.stock.PERatio}}</strong></p><hr>
+                <p>DividendPayDate: <strong>{{stockCtrl.stock.DividendPayDate}}</strong></p><hr>
+                <p>DividendShare: <strong>{{stockCtrl.stock.DividendShare}}</strong></p><hr>
+                <p>EBITDA: <strong>{{stockCtrl.stock.EBITDA}}</strong></p><hr>
+                <p ng-if="stockCtrl.stock.ChangeFromYearLow[0] == '+'">ChangeFromYearLow: <strong style="color: #387ef5">{{stockCtrl.stock.ChangeFromYearLow}}</strong></p>
+                <p ng-if="stockCtrl.stock.ChangeFromYearLow[0] == '-'">ChangeFromYearLow: <strong style="color: #ef473a">{{stockCtrl.stock.ChangeFromYearLow}}</strong></p>
+                <p ng-if="stockCtrl.stock.ChangeFromYearLow[0] != '+' && stockCtrl.stock.ChangeFromYearLow[0] != '-'">ChangeFromYearLow: {{stockCtrl.stock.ChangeFromYearLow}}</p>
+            </div>
+            <div class="col">
+                <p>Currency: <strong>{{stockCtrl.stock.Currency}}</strong></p><hr>
+                <p>PEGRatio: <strong>{{stockCtrl.stock.PEGRatio}}</strong></p><hr>
+                <p>ExDividendDate: <strong>{{stockCtrl.stock.ExDividendDate}}</strong></p><hr>
+                <p>DividendYield: <strong>{{stockCtrl.stock.DividendYield}}</strong></p><hr>
+                <p>EarningsShare: <strong>{{stockCtrl.stock.EarningsShare}}</strong></p><hr>
+                <p ng-if="stockCtrl.stock.PercentChangeFromYearLow[0] == '+'">ChangeFromYearLow(%): <strong style="color: #387ef5">{{stockCtrl.stock.PercentChangeFromYearLow}}</strong></p>
+                <p ng-if="stockCtrl.stock.PercentChangeFromYearLow[0] == '-'">ChangeFromYearLow(%): <strong style="color: #ef473a">{{stockCtrl.stock.PercentChangeFromYearLow}}</strong></p>
+                <p ng-if="stockCtrl.stock.PercentChangeFromYearLow[0] != '+' && stockCtrl.stock.PercentChangeFromYearLow[0] != '-'">ChangeFromYearLow(%): {stockCtrl.stock.PercentChangeFromYearLow}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+                <p>EPSEstimateCurrentYear: <strong>{{stockCtrl.stock.EPSEstimateCurrentYear}}</strong></p><hr>
+                <p>EPSEstimateNextYear: <strong>{{stockCtrl.stock.EPSEstimateNextYear}}</strong></p><hr>
+                <p>EPSEstimateNextQuarter: <strong>{{stockCtrl.stock.EPSEstimateNextQuarter}}</strong></p>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>50DMovAvg: <strong>{{stockCtrl.stock.FiftydayMovingAverage}}</strong></p><hr>
+                <p>Change50DMA: <strong>{{stockCtrl.stock.ChangeFromFiftydayMovingAverage}}</strong></p><hr>
+                <p ng-if="stockCtrl.stock.PercentChangeFromFiftydayMovingAverage[0] == '+'">Change50DMA(%): <strong style="color: #387ef5">{{stockCtrl.stock.PercentChangeFromFiftydayMovingAverage}}</strong></p>
+                <p ng-if="stockCtrl.stock.PercentChangeFromFiftydayMovingAverage[0] == '-'">Change50DMA(%): <strong style="color: #387ef5">{{stockCtrl.stock.PercentChangeFromFiftydayMovingAverage}}</strong></p>
+                <hr>
+                <p>PriceSales: <strong>{{stockCtrl.stock.PriceSales}}</strong></p><hr>
+                <p>PriceEPSEstimateCurrentYear: <strong>{{stockCtrl.stock.PriceEPSEstimateCurrentYear}}</strong></p><hr>
+                <p>ShortRatio: <strong>{{stockCtrl.stock.ShortRatio}}</strong></p><hr>
+            </div>
+            <div class="col">
+                <p>200DMovAvg: <strong>{{stockCtrl.stock.TwoHundreddayMovingAverage}}</strong></p><hr>
+                <p>Change200DMA: <strong>{{stockCtrl.stock.ChangeFromTwoHundreddayMovingAverage}}</strong></p><hr>
+                <p ng-if="stockCtrl.stock.PercentChangeFromTwoHundreddayMovingAverage[0] == '+'">Change200DMA(%): <strong style="color: #387ef5">{{stockCtrl.stock.PercentChangeFromTwoHundreddayMovingAverage}}</strong></p>
+                <p ng-if="stockCtrl.stock.PercentChangeFromTwoHundreddayMovingAverage[0] == '-'">Change200DMA(%): <strong style="color: #387ef5">{{stockCtrl.stock.PercentChangeFromTwoHundreddayMovingAverage}}</strong></p>
+                <hr>
+                <p>PriceBook: <strong>{{stockCtrl.stock.PriceBook}}</strong></p><hr>
+                <p>PriceEPSEstimateNextYear: <strong>{{stockCtrl.stock.PriceEPSEstimateNextYear}}</strong></p><hr>
+                <p>1YTargetPrice: <strong>{{stockCtrl.stock.OneyrTargetPrice}}</strong></p><hr>
+            </div>
+        </div>
+    </span>
   </ion-content>
 </ion-view>
