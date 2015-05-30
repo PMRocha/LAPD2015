@@ -4,10 +4,22 @@
     <ion-spinner class="absolute-center" icon="android" ng-if="watchlistCtrl.isAndroid && watchlistCtrl.loading"></ion-spinner>
     <ion-list ng-if="!watchlistCtrl.loading">
       <ion-item class="stock-watchlist-item" ng-repeat="stock in watchlistCtrl.stocks" href="#/app/watchlist/{{stock.symbol}}">
-        {{stock.symbol}} <strong>{{stock.LastTradePriceOnly}}</strong>
-      <span class="badge badge-assertive" ng-if="!stock.Change">N/A</span>
-    	<span class="badge badge-positive" ng-if="stock.Change[0] == '+'" ng-click="$event.preventDefault();watchlistCtrl.switchBadge(watchlistCtrl.stocks)">{{stock.Showed}}</span>
-    	<span class="badge badge-assertive" ng-if="stock.Change[0] == '-'" ng-click="$event.preventDefault();watchlistCtrl.switchBadge(watchlistCtrl.stocks)">{{stock.Showed}}</span>
+        <div class="row">
+          <div class="col">
+            {{stock.symbol}}
+          </div>
+          <div class="col">
+            <strong>{{stock.LastTradePriceOnly}}</strong>
+          </div>
+          <div class="col">
+            1x<strong>100</strong>
+          </div>
+          <div class="col">
+            <span class="badge badge-assertive" ng-if="!stock.Change">N/A</span>
+        	  <span class="badge badge-positive" ng-if="stock.Change[0] == '+'" ng-click="$event.preventDefault();watchlistCtrl.switchBadge(watchlistCtrl.stocks)">{{stock.Showed}}</span>
+            <span class="badge badge-assertive" ng-if="stock.Change[0] == '-'" ng-click="$event.preventDefault();watchlistCtrl.switchBadge(watchlistCtrl.stocks)">{{stock.Showed}}</span>
+          </div>
+        </div>
       </ion-item>
     </ion-list>
   </ion-content>

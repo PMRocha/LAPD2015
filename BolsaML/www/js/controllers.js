@@ -222,25 +222,8 @@ angular.module('starter.controllers', [])
       $timeout(tick, 2000);
   })();
 
-  stockCtrl.switchTimespan = function() {
-
-    var timespan = stockCtrl.timespan;
-
-    if (timespan == "1d") {
-      timespan = "5d";
-    } else if (timespan == "5d") {
-      timespan = "1m";
-    } else if (timespan == "1m") {
-      timespan = "6m";
-    } else if (timespan == "6m") {
-      timespan = "1y";
-    } else if (timespan == "1y") {
-      timespan = "1d";
-    } else {
-      timespan = "1d";
-    }
-
-    stockCtrl.timespan = timespan;
+  stockCtrl.switchTimespan = function (value) {
+    stockCtrl.timespan = value;
   }
 
   function fetchData(symbol) {

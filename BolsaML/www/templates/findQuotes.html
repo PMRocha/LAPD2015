@@ -8,45 +8,47 @@
 	</form novalidate class="simple-form">
 	<ion-content class="find-quote-container" ng-show="findQuotesCtrl.quoteFound && !findQuotesCtrl.loading">
 		<div id="find-quote-info">
-		<p id="find-quote-symbol">{{findQuotesCtrl.quote.Name}} ({{findQuotesCtrl.quote.symbol | uppercase}})</p>
-		<span id="find-quote-lastvalue"><strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></span>
-		<span style="color: #387ef5" ng-if="findQuotesCtrl.quote.Change[0] == '+'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
-		<span style="color: #ef473a" ng-if="findQuotesCtrl.quote.Change[0] == '-'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
-		<hr>
-		<div class="row">
-	  		<div class="col">
-				<p>Ask: <strong>{{findQuotesCtrl.quote.Ask}}</strong></p><hr>
-				<p>Last Price: <strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></p><hr>
-				<p ng-if="findQuotesCtrl.quote.Change[0] == '+'">Change: <strong style="color: #387ef5">{{findQuotesCtrl.quote.Change}}</strong></p>
-				<p ng-if="findQuotesCtrl.quote.Change[0] == '-'">Change: <strong style="color: #ef473a">{{findQuotesCtrl.quote.Change}}</strong></p>
-				<hr>
-				<p>Volume: <strong>{{findQuotesCtrl.quote.Volume}}</strong></p><hr>
-				<p>Market Cap: <strong>{{findQuotesCtrl.quote.MarketCapitalization}}</strong></p><hr>
-				<p>Day's Range: <strong>{{findQuotesCtrl.quote.DaysRange}}</strong></p><hr>
+			<p id="find-quote-symbol">{{findQuotesCtrl.quote.Name}} ({{findQuotesCtrl.quote.symbol | uppercase}})</p>
+			<span id="find-quote-lastvalue"><strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></span>
+			<span style="color: #387ef5" ng-if="findQuotesCtrl.quote.Change[0] == '+'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
+			<span style="color: #ef473a" ng-if="findQuotesCtrl.quote.Change[0] == '-'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
+			<hr>
+			<div class="row">
+				<div class="col">
+					<p>Ask: <strong>{{findQuotesCtrl.quote.Ask}}</strong></p><hr>
+					<p>Last Price: <strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></p><hr>
+					<p>Prev Close: <strong>{{findQuotesCtrl.quote.PreviousClose}}</strong></p><hr>
+					<p ng-if="findQuotesCtrl.quote.Change[0] == '+'">Change: <strong style="color: #387ef5">{{findQuotesCtrl.quote.Change}}</strong></p>
+					<p ng-if="findQuotesCtrl.quote.Change[0] == '-'">Change: <strong style="color: #ef473a">{{findQuotesCtrl.quote.Change}}</strong></p>
+					<hr>
+					<p>Volume: <strong>{{findQuotesCtrl.quote.Volume}}</strong></p><hr>
+					<p>Market Cap: <strong>{{findQuotesCtrl.quote.MarketCapitalization}}</strong></p><hr>
+					<p>Day's Range: <strong>{{findQuotesCtrl.quote.DaysRange}}</strong></p><hr>
+				</div>
+				<div class="col">
+					<p>Bid: <strong>{{findQuotesCtrl.quote.Bid}}</strong></p><hr>
+					<p>Last Trade: <strong>{{findQuotesCtrl.quote.LastTradeTime}}</strong></p><hr>
+					<p>Open: <strong>{{findQuotesCtrl.quote.Open}}</strong></p><hr>
+					<p ng-if="findQuotesCtrl.quote.Change[0] == '+'">Change(%): <strong style="color: #387ef5">{{findQuotesCtrl.quote.ChangeinPercent}}</strong></p>
+					<p ng-if="findQuotesCtrl.quote.Change[0] == '-'">Change(%): <strong style="color: #ef473a">{{findQuotesCtrl.quote.ChangeinPercent}}</strong></p>
+					<hr>
+					<p>Avg Volume: <strong>{{findQuotesCtrl.quote.AverageDailyVolume}}</strong></p><hr>
+					<p>1Y Target Price: <strong>{{findQuotesCtrl.quote.OneyrTargetPrice}}</strong></p><hr>
+					<p>1Y Range: <strong>{{findQuotesCtrl.quote.YearRange}}</strong></p><hr>
+				</div>
 			</div>
-			<div class="col">
-				<p>Bid: <strong>{{findQuotesCtrl.quote.Bid}}</strong></p><hr>
-				<p>Last Trade: <strong>{{findQuotesCtrl.quote.LastTradeDate}}</strong></p><hr>
-				<p ng-if="findQuotesCtrl.quote.Change[0] == '+'">Change(%): <strong style="color: #387ef5">{{findQuotesCtrl.quote.ChangeinPercent}}</strong></p>
-				<p ng-if="findQuotesCtrl.quote.Change[0] == '-'">Change(%): <strong style="color: #ef473a">{{findQuotesCtrl.quote.ChangeinPercent}}</strong></p>
-				<hr>
-				<p>Avg Volume: <strong>{{findQuotesCtrl.quote.AverageDailyVolume}}</strong></p><hr>
-				<p>1Y Target Price: <strong>{{findQuotesCtrl.quote.OneyrTargetPrice}}</strong></p><hr>
-				<p>1Y Range: <strong>{{findQuotesCtrl.quote.YearRange}}</strong></p><hr>
+			<div class="row">
+				<div class="col-25"></div>
+				<div class="col-50">
+					<button class="button button-block button-light">
+						Buy ({{findQuotesCtrl.quote.Ask}})
+					</button>
+				</div>
+				<div class="col-25"></div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-25"></div>
-			<div class="col-50">
-				<button class="button button-block button-light">
-					Buy ({{findQuotesCtrl.quote.Ask}})
-				</button>
-			</div>
-			<div class="col-25"></div>
-		</div>
-		</div>
-		<div class="row">
-			<img id="find-quote-chart" ng-src="http://chart.finance.yahoo.com/z?s={{findQuotesCtrl.quote.symbol}}&amp;t={{findQuotesCtrl.timespan}}&amp;q=l&amp;l=off&amp;z=l&amp;a=v" alt="quote chart"/>
+			<img class="quote-chart" ng-src="http://chart.finance.yahoo.com/z?s={{findQuotesCtrl.quote.symbol}}&amp;t={{findQuotesCtrl.timespan}}&amp;q=l&amp;l=off&amp;z=l&amp;a=v" alt="quote chart"/>
 		</div>
 		<div class="row">
 			<div class="col">
@@ -59,6 +61,65 @@
 				</div>
 			</div>
 		</div>
+        <hr>
+        <div class="row">
+            <div class="col" style="text-align:center">
+                <h4>Advanced Information</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>BookValue: <strong>{{findQuotesCtrl.quote.BookValue}}</strong></p><hr>
+                <p>PERatio: <strong>{{findQuotesCtrl.quote.PERatio}}</strong></p><hr>
+                <p>DividendPayDate: <strong>{{findQuotesCtrl.quote.DividendPayDate}}</strong></p><hr>
+                <p>DividendShare: <strong>{{findQuotesCtrl.quote.DividendShare}}</strong></p><hr>
+                <p>EBITDA: <strong>{{findQuotesCtrl.quote.EBITDA}}</strong></p><hr>
+                <p ng-if="findQuotesCtrl.quote.ChangeFromYearLow[0] == '+'">ChangeFromYearLow: <strong style="color: #387ef5">{{findQuotesCtrl.quote.ChangeFromYearLow}}</strong></p>
+                <p ng-if="findQuotesCtrl.quote.ChangeFromYearLow[0] == '-'">ChangeFromYearLow: <strong style="color: #ef473a">{{findQuotesCtrl.quote.ChangeFromYearLow}}</strong></p>
+                <p ng-if="findQuotesCtrl.quote.ChangeFromYearLow[0] != '+' && findQuotesCtrl.quote.ChangeFromYearLow[0] != '-'">ChangeFromYearLow: {{findQuotesCtrl.quote.ChangeFromYearLow}}</p>
+            </div>
+            <div class="col">
+                <p>Currency: <strong>{{findQuotesCtrl.quote.Currency}}</strong></p><hr>
+                <p>PEGRatio: <strong>{{findQuotesCtrl.quote.PEGRatio}}</strong></p><hr>
+                <p>ExDividendDate: <strong>{{findQuotesCtrl.quote.ExDividendDate}}</strong></p><hr>
+                <p>DividendYield: <strong>{{findQuotesCtrl.quote.DividendYield}}</strong></p><hr>
+                <p>EarningsShare: <strong>{{findQuotesCtrl.quote.EarningsShare}}</strong></p><hr>
+                <p ng-if="findQuotesCtrl.quote.PercentChangeFromYearLow[0] == '+'">ChangeFromYearLow(%): <strong style="color: #387ef5">{{findQuotesCtrl.quote.PercentChangeFromYearLow}}</strong></p>
+                <p ng-if="findQuotesCtrl.quote.PercentChangeFromYearLow[0] == '-'">ChangeFromYearLow(%): <strong style="color: #ef473a">{{findQuotesCtrl.quote.PercentChangeFromYearLow}}</strong></p>
+                <p ng-if="findQuotesCtrl.quote.PercentChangeFromYearLow[0] != '+' && findQuotesCtrl.quote.PercentChangeFromYearLow[0] != '-'">ChangeFromYearLow(%): {findQuotesCtrl.quote.PercentChangeFromYearLow}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+            	<hr>
+                <p>EPSEstimateCurrentYear: <strong>{{findQuotesCtrl.quote.EPSEstimateCurrentYear}}</strong></p><hr>
+                <p>EPSEstimateNextYear: <strong>{{findQuotesCtrl.quote.EPSEstimateNextYear}}</strong></p><hr>
+                <p>EPSEstimateNextQuarter: <strong>{{findQuotesCtrl.quote.EPSEstimateNextQuarter}}</strong></p>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>50DMovAvg: <strong>{{findQuotesCtrl.quote.FiftydayMovingAverage}}</strong></p><hr>
+                <p>Change50DMA: <strong>{{findQuotesCtrl.quote.ChangeFromFiftydayMovingAverage}}</strong></p><hr>
+                <p ng-if="findQuotesCtrl.quote.PercentChangeFromFiftydayMovingAverage[0] == '+'">Change50DMA(%): <strong style="color: #387ef5">{{findQuotesCtrl.quote.PercentChangeFromFiftydayMovingAverage}}</strong></p>
+                <p ng-if="findQuotesCtrl.quote.PercentChangeFromFiftydayMovingAverage[0] == '-'">Change50DMA(%): <strong style="color: #387ef5">{{findQuotesCtrl.quote.PercentChangeFromFiftydayMovingAverage}}</strong></p>
+                <hr>
+                <p>PriceSales: <strong>{{findQuotesCtrl.quote.PriceSales}}</strong></p><hr>
+                <p>PriceEPSEstimateCurrentYear: <strong>{{findQuotesCtrl.quote.PriceEPSEstimateCurrentYear}}</strong></p><hr>
+                <p>ShortRatio: <strong>{{findQuotesCtrl.quote.ShortRatio}}</strong></p><hr>
+            </div>
+            <div class="col">
+                <p>200DMovAvg: <strong>{{findQuotesCtrl.quote.TwoHundreddayMovingAverage}}</strong></p><hr>
+                <p>Change200DMA: <strong>{{findQuotesCtrl.quote.ChangeFromTwoHundreddayMovingAverage}}</strong></p><hr>
+                <p ng-if="findQuotesCtrl.quote.PercentChangeFromTwoHundreddayMovingAverage[0] == '+'">Change200DMA(%): <strong style="color: #387ef5">{{findQuotesCtrl.quote.PercentChangeFromTwoHundreddayMovingAverage}}</strong></p>
+                <p ng-if="findQuotesCtrl.quote.PercentChangeFromTwoHundreddayMovingAverage[0] == '-'">Change200DMA(%): <strong style="color: #387ef5">{{findQuotesCtrl.quote.PercentChangeFromTwoHundreddayMovingAverage}}</strong></p>
+                <hr>
+                <p>PriceBook: <strong>{{findQuotesCtrl.quote.PriceBook}}</strong></p><hr>
+                <p>PriceEPSEstimateNextYear: <strong>{{findQuotesCtrl.quote.PriceEPSEstimateNextYear}}</strong></p><hr>
+                <p>1YTargetPrice: <strong>{{findQuotesCtrl.quote.OneyrTargetPrice}}</strong></p><hr>
+            </div>
+        </div>
 	</ion-content>
 	<div ng-show="!findQuotesCtrl.quoteFound && !findQuotesCtrl.loading">
 		<span class="absolute-center no-symbol-found-span">No Symbol Was Found</span>
