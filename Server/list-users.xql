@@ -8,7 +8,4 @@ declare option exist:serialize "method=json media-type=application/json";
 
 
 for $user in doc("schema.xml")/Finance/Users/User
-return 
-<json:value>
-{$user}
-    </json:value>
+return $user

@@ -3,31 +3,44 @@
 		<User>
 			<Username>Test</Username>
 			<Password>qwerty</Password>
-			<Wallet cur="US$">10000</Wallet>
+			<Wallet>
+				<cur>US$</cur>
+				<value>1000000</value>
+			</Wallet>
 			<Followed_Companies>
 				<Followed_Company>
-					<Symbol favourite="true">COM</Symbol>
-					<Sell_rule quantity="10">
-						<Ceiling cur="US$">
-						30	
+					<Symbol>
+						<favourite>true</favourite>
+						<value>COM</value>
+					</Symbol>
+					<Sell_rule>
+						<quantity>10</quantity>
+						<Ceiling>
+							<cur>US$</cur>
+							<value>30</value>
 						</Ceiling>
-						<Floor cur="US$">
-						20
+						<Floor>
+							<cur>US$</cur>
+							<value>20</value>
 						</Floor>
 					</Sell_rule>
-					<Buy_rule quantity="10">
-						<Ceiling cur="US$">
-						15	
+					<Buy_rule>
+						<quantity>10</quantity>
+						<Ceiling>
+							<cur>US$</cur>
+							<value>15</value>
 						</Ceiling>
-						<Floor cur="US$">
-						5
+						<Floor>
+							<cur>US$</cur>
+							<value>5</value>
 						</Floor>
 					</Buy_rule>
 					<Stocks_owned>
 					1000
 					</Stocks_owned>
-					<Stocks_price cur="US$">
-					2.36
+					<Stocks_price>
+						<cur>US$</cur>
+						<value>2.36</value>
 					</Stocks_price>
 				</Followed_Company>
 			</Followed_Companies>
@@ -35,88 +48,123 @@
 		<User>
 			<Username>john</Username>
 			<Password>12345</Password>
-			<Wallet cur="US$">10000</Wallet>
+			<Wallet>
+				<cur>US$</cur>
+				<value>10000</value>
+			</Wallet>
 			<Followed_Companies>
 				<Followed_Company>
-					<Symbol favourite="true">COM</Symbol>
-					<Sell_rule quantity="10">
-						<Ceiling cur="US$">
-						30	
+					<Symbol>
+						<favourite>true</favourite>
+						<value>COM</value>
+					</Symbol>
+					<Sell_rule>
+						<quantity>10</quantity>
+						<Ceiling>
+							<cur>US$</cur>
+							<value>30</value>
 						</Ceiling>
-						<Floor cur="US$">
-						20
+						<Floor>
+							<cur>US$</cur>
+							<value>20</value>
 						</Floor>
 					</Sell_rule>
-					<Buy_rule quantity="10">
-						<Ceiling cur="US$">
-						15	
+					<Buy_rule>
+						<quantity>10</quantity>
+						<Ceiling>
+							<cur>US$</cur>
+							<value>15</value>	
 						</Ceiling>
 						<Floor cur="US$">
-						5
+							<cur>US$</cur>
+							<value>5</value>
 						</Floor>
 					</Buy_rule>
 					<Stocks_owned>
 					1000
 					</Stocks_owned>
-					<Stocks_price cur="US$">
-					2.36
+					<Stocks_price>
+						<cur>US$</cur>
+						<value>2.36</value>
 					</Stocks_price>
 				</Followed_Company>
 				<Followed_Company>
-					<Symbol favourite="true">ISR</Symbol>
-					<Sell_rule quantity="10">
-						<Ceiling cur="US$">
-						30	
+					<Symbol>
+						<favourite>true</favourite>
+						<value>ISR</value>
+					</Symbol>
+					<Sell_rule>
+						<quantity>10</quantity>
+						<Ceiling>
+							<cur>US$</cur>
+							<value>30</value>
 						</Ceiling>
-						<Floor cur="US$">
-						20
+						<Floor>
+							<cur>US$</cur>
+							<value>20</value>
 						</Floor>
 					</Sell_rule>
-					<Buy_rule quantity="10">
-						<Ceiling cur="US$">
-						15	
+					<Buy_rule>
+						<quantity>10</quantity>
+						<Ceiling>
+							<cur>US$</cur>
+							<value>15</value>
 						</Ceiling>
-						<Floor cur="US$">
-						5
+						<Floor>
+							<cur>US$</cur>
+							<value>5</value>
 						</Floor>
 					</Buy_rule>
 					<Stocks_owned>
 					10
 					</Stocks_owned>
 					<Stocks_price cur="US$">
-					10
+						<cur>US$</cur>
+						<value>10</value>
 					</Stocks_price>
 				</Followed_Company>
 			</Followed_Companies>
 		</User>
 		<User>
 			<Username>correia</Username>
-			<Password>12345</Password>
-			<Wallet cur="US$">0</Wallet>
+			<Wallet>
+				<cur>US$</cur>
+				<value>0</value>
+			</Wallet>
 			<Followed_Companies>
 				<Followed_Company>
-					<Symbol favourite="true">COM</Symbol>
-					<Sell_rule quantity="10">
-						<Ceiling cur="US$">
-						30	
+					<Symbol favourite="true">
+						<favourite>true</favourite>
+						<value>COM</value>
+					</Symbol>
+					<Sell_rule>
+						<quantity>10</quantity>
+						<Ceiling>
+							<cur>US$</cur>
+							<value>30</value>
 						</Ceiling>
-						<Floor cur="US$">
-						20
+						<Floor>
+							<cur>US$</cur>
+							<value>20</value>
 						</Floor>
 					</Sell_rule>
-					<Buy_rule quantity="10">
+					<Buy_rule>
+						<quantity>10</quantity>
 						<Ceiling cur="US$">
-						15	
+							<cur>US$</cur>
+							<value>15</value>
 						</Ceiling>
 						<Floor cur="US$">
-						5
+							<cur>US$</cur>
+							<value>5</value>
 						</Floor>
 					</Buy_rule>
 					<Stocks_owned>
 					10
 					</Stocks_owned>
 					<Stocks_price cur="US$">
-					2.36
+						<cur>US$</cur>
+						<value>2.36</value>
 					</Stocks_price>
 				</Followed_Company>
 			</Followed_Companies>
