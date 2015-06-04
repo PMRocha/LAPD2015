@@ -12,6 +12,7 @@
 			<span id="find-quote-lastvalue"><strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></span>
 			<span style="color: #387ef5" ng-if="findQuotesCtrl.quote.Change[0] == '+'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
 			<span style="color: #ef473a" ng-if="findQuotesCtrl.quote.Change[0] == '-'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
+			<button class="button button-positive" ui-sref="app.addStock({symbol: findQuotesCtrl.quote.symbol})">Add to WatchList</button>
 			<hr>
 			<div class="row">
 				<div class="col">
@@ -40,7 +41,7 @@
 			<div class="row">
 				<div class="col-25"></div>
 				<div class="col-50">
-					<button class="button button-block button-light">
+					<button class="button button-block button-light" ng-click="findQuotesCtrl.buyStock(findQuotesCtrl.quote.Ask,findQuotesCtrl.quote.symbol)">
 						Buy ({{findQuotesCtrl.quote.Ask}})
 					</button>
 				</div>

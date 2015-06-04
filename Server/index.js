@@ -25,5 +25,12 @@ app.post('/login', function (req, res) {
 app.post('/signup', function (req, res) {
     api.signup(req, res)
 });
-
+app.post('/stockAdd',function(req,res)
+{
+   return api.addStock(req,res);
+});
+app.post('/stockBuy',function(req,res)
+{
+    return api.buyStock(req,res);
+});
 app.get('/watchList/:username', api.getWatchList);

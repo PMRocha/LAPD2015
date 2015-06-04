@@ -10,6 +10,9 @@ angular.module('starter.controllers', [])
             console.log("User data get=" + JSON.stringify(this.userData));
             return this.userData;
         }
+        this.destroyData = function () {
+            this.userData = {};
+        }
     })
     .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $http, $state, userService) {
         // Form data for the login modal
@@ -33,6 +36,10 @@ angular.module('starter.controllers', [])
         // Open the logout modal
         $scope.logout = function () {
             $scope.logoutModal.show();
+            userService.destroyData();
+            $scope.user = {};
+            $state.go('app.home');
+            $scope.logoutModal.hide();
         };
 
         // Triggered in the logout modal to close it
@@ -60,15 +67,32 @@ angular.module('starter.controllers', [])
                 $scope.user.password = $scope.loginData.password;
                 console.log('Success');
                 console.log($scope.user);
-                $state.go('app.watchlist');
+                $state.go('app.findQuotes');
             });
             $timeout(function () {
                 $scope.closeLogin();
             }, 1000);
         };
     })
-
-    .controller('FindQuotesCtrl', function ($http) {
+    .controller('AddStockCtrl', function($http,userService,$stateParams,$state)
+    {
+        var addStockCtrl=this;
+        addStockCtrl.stockFormData={};
+        var symbol=$stateParams.symbol;
+        console.log('Teste' + symbol);
+        addStockCtrl.addStock = function () {
+            addStockCtrl.stockFormData.username = userService.getData().username;
+            addStockCtrl.stockFormData.stock = symbol;
+            $http.post('http://localhost:5000/stockAdd/', addStockCtrl.stockFormData).success(function (data, status, headers, config) {
+                console.log('Success');
+                $state.go('app.watchlist');
+            })
+                .error(function (err) {
+                    console.log(err);
+                });
+        }
+    })
+    .controller('FindQuotesCtrl', function ($http,userService,$state) {
         var findQuotesCtrl = this;
 
         findQuotesCtrl.isIOS = ionic.Platform.isIOS();
@@ -90,7 +114,18 @@ angular.module('starter.controllers', [])
                     .error(fetchError);
             }
         };
-
+        findQuotesCtrl.buyStock = function (price,symbol) {
+            findQuotesCtrl.stockData={};
+            findQuotesCtrl.stockData.username = userService.getData().username;
+            findQuotesCtrl.stockData.stock = symbol;
+            findQuotesCtrl.stockData.price=price;
+                $http.post('http://localhost:5000/stockBuy/', findQuotesCtrl.stockData).success(function (data, status, headers, config) {
+                    $state.go('app.watchlist');
+                })
+                    .error(function (err) {
+                        console.log(err);
+                    });
+            }
         findQuotesCtrl.switchTimespan = function (value) {
             findQuotesCtrl.timespan = value;
         }
@@ -119,11 +154,12 @@ angular.module('starter.controllers', [])
         function fetchError(error) {
             console.error(error);
         }
+
     })
 
     .controller('WatchlistCtrl', function ($http, $timeout, $scope, userService) {
         var watchlistCtrl = this;
-
+        watchlistCtrl.stocksOwned={};
         watchlistCtrl.isIOS = ionic.Platform.isIOS();
         watchlistCtrl.isAndroid = ionic.Platform.isAndroid();
         watchlistCtrl.showing = 1;
@@ -139,6 +175,7 @@ angular.module('starter.controllers', [])
                     .error(fetchError);
             }).error(function (data, status, headers, config) {
                 console.log(data);
+                console.log('There was an error');
             });
         };
         (function tick() {
@@ -148,23 +185,23 @@ angular.module('starter.controllers', [])
         })();
         watchlistCtrl.switchBadge = function (stocks) {
 
-                stocks.forEach(function (stock) {
-                    var showed = stock.Showed;
+            stocks.forEach(function (stock) {
+                var showed = stock.Showed;
 
-                    if (showed == stock.Change) {
-                        stock.Showed = stock.ChangeinPercent;
-                        watchlistCtrl.showing = 2;
-                    } else if (showed == stock.ChangeinPercent) {
-                        stock.Showed = stock.MarketCapitalization;
-                        watchlistCtrl.showing = 3;
-                    } else if (showed == stock.MarketCapitalization) {
-                        stock.Showed = stock.Change;
-                        watchlistCtrl.showing = 1;
-                    } else {
-                        stock.Showed = "N/A";
-                        watchlistCtrl.showing = 0;
-                    }
-                });
+                if (showed == stock.Change) {
+                    stock.Showed = stock.ChangeinPercent;
+                    watchlistCtrl.showing = 2;
+                } else if (showed == stock.ChangeinPercent) {
+                    stock.Showed = stock.MarketCapitalization;
+                    watchlistCtrl.showing = 3;
+                } else if (showed == stock.MarketCapitalization) {
+                    stock.Showed = stock.Change;
+                    watchlistCtrl.showing = 1;
+                } else {
+                    stock.Showed = "N/A";
+                    watchlistCtrl.showing = 0;
+                }
+            });
 
         };
 
@@ -174,9 +211,9 @@ angular.module('starter.controllers', [])
 
         function fetchData(stocks) {
             var url = "http://query.yahooapis.com/v1/public/yql";
-
             var dataPrepare = "select symbol, LastTradePriceOnly, Name, ChangeinPercent, Change, MarketCapitalization from yahoo.finance.quotes where symbol in (";
             stocks.forEach(function (stock) {
+                watchlistCtrl.stocksOwned[stock.Symbol.value]=stock.Stocks_owned;
                 dataPrepare = dataPrepare + "'" + stock.Symbol.value + "',";
             });
             dataPrepare = dataPrepare.substring(0, dataPrepare.length - 1);
@@ -190,12 +227,9 @@ angular.module('starter.controllers', [])
 
         function fetchSuccess(data) {
             var stocks = data.query.results.quote;
-            console.log(typeof(stocks));
-            console.log(JSON.stringify(stocks));
-            if (stocks !== Array)
-            {
+            if (!(stocks instanceof Array)) {
                 var s = stocks;
-                stocks=Array();
+                stocks = Array();
                 stocks.push(s);
             }
             stocks.forEach(function (stock) {
@@ -212,6 +246,7 @@ angular.module('starter.controllers', [])
                 }
 
                 stock["Showed"] = showed;
+                stock["quantity"]=watchlistCtrl.stocksOwned[stock.symbol];
             });
 
             watchlistCtrl.stocks = stocks;
@@ -223,14 +258,12 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('StockCtrl', function ($stateParams, $http, $timeout) {
+    .controller('StockCtrl', function ($scope, $state, $ionicModal, $stateParams, $http, $timeout, userService) {
         var stockCtrl = this;
-
         stockCtrl.isIOS = ionic.Platform.isIOS();
         stockCtrl.isAndroid = ionic.Platform.isAndroid();
         stockCtrl.loading = true;
         stockCtrl.timespan = "1d";
-
         (function tick() {
 
             fetchData($stateParams.symbol)
@@ -243,10 +276,17 @@ angular.module('starter.controllers', [])
             stockCtrl.timespan = value;
         }
 
+        $ionicModal.fromTemplateUrl('templates/addStock.html', {
+            scope: $scope
+        }).then(function (modal) {
+            $scope.addModal = modal;
+        });
+        stockCtrl.closeStock = function () {
+            $scope.addModal.hide();
+        }
         function fetchData(symbol) {
             var url = "http://query.yahooapis.com/v1/public/yql";
             var data = encodeURIComponent("select * from yahoo.finance.quotes where symbol in ('" + symbol + "')");
-
             url = url + "?q=" + data + "&format=json&diagnostics=true&env=http://datatables.org/alltables.env";
 
             return $http.get(url);

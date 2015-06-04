@@ -1,0 +1,35 @@
+<ion-view title="Add Stock" align-title="left">
+    <ion-content>
+        <form ng-submit="addStockCtrl.addStock()">
+            <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">Sell rule quantity</span>
+                    <input type="number" ng-model="addStockCtrl.stockFormData.sellQuantity">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Sell rule Ceiling value</span>
+                    <input type="number" ng-model="addStockCtrl.stockFormData.sellCeilingValue">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Sell rule Floor value</span>
+                    <input type="number" ng-model="addStockCtrl.stockFormData.sellFloorValue">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Buy rule quantity</span>
+                    <input type="number" ng-model="addStockCtrl.stockFormData.buyQuantity">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Buy rule Ceiling value</span>
+                    <input type="number" ng-model="addStockCtrl.stockFormData.buyCeilingValue">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Buy rule Floor value</span>
+                    <input type="number" ng-model="addStockCtrl.stockFormData.buyFloorValue">
+                </label>
+                <label class="item">
+                    <button class="button button-block button-positive" type="submit">Add</button>
+                </label>
+            </div>
+        </form>
+    </ion-content>
+</ion-view>
