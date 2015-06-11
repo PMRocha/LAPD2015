@@ -48,6 +48,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
                 }
             })
 
+            .state('app.wallet', {
+                url: "/wallet",
+                views: {
+                    'menuContent': {
+                        templateUrl: "templates/wallet.html",
+                        controller: 'WalletCtrl as walletCtrl'
+                    }
+                }
+            })
+
             .state('app.browse', {
                 url: "/browse",
                 views: {

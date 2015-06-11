@@ -35,7 +35,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <button class="button button-block button-light">
+                <button class="button button-block button-light" ng-click="stockCtrl.buyStock(stockCtrl.stock.Ask, stockCtrl.stock.symbol)">
                     Buy ({{stockCtrl.stock.Ask}})
                 </button>
             </div>

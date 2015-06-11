@@ -8,11 +8,17 @@
 	</form novalidate class="simple-form">
 	<ion-content class="find-quote-container" ng-show="findQuotesCtrl.quoteFound && !findQuotesCtrl.loading">
 		<div id="find-quote-info">
-			<p id="find-quote-symbol">{{findQuotesCtrl.quote.Name}} ({{findQuotesCtrl.quote.symbol | uppercase}})</p>
-			<span id="find-quote-lastvalue"><strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></span>
-			<span style="color: #387ef5" ng-if="findQuotesCtrl.quote.Change[0] == '+'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
-			<span style="color: #ef473a" ng-if="findQuotesCtrl.quote.Change[0] == '-'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
-			<button class="button button-positive" ui-sref="app.addStock({symbol: findQuotesCtrl.quote.symbol})">Add to WatchList</button>
+			<div class="row">
+				<div class="col">
+					<p id="find-quote-symbol">{{findQuotesCtrl.quote.Name}} ({{findQuotesCtrl.quote.symbol | uppercase}})</p>
+					<span id="find-quote-lastvalue"><strong>{{findQuotesCtrl.quote.LastTradePriceOnly}}</strong></span>
+					<span style="color: #387ef5" ng-if="findQuotesCtrl.quote.Change[0] == '+'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
+					<span style="color: #ef473a" ng-if="findQuotesCtrl.quote.Change[0] == '-'"><strong>{{findQuotesCtrl.quote.Change}} ({{findQuotesCtrl.quote.ChangeinPercent}})</strong></span>
+				</div>
+				<div class="col-25 padding-right">
+					<button class="button button-positive" ui-sref="app.addStock({symbol: findQuotesCtrl.quote.symbol})">Add to WatchList</button>
+				</div>
+			</div>
 			<hr>
 			<div class="row">
 				<div class="col">

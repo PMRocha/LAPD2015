@@ -6,15 +6,25 @@ angular.module('starter.controllers', [])
             this.userData = data;
             console.log("User data=" + JSON.stringify(this.userData));
         }
+        this.store = function(data) {
+            console.log(data);
+            this.data=data;
+        }
         this.getData = function () {
             console.log("User data get=" + JSON.stringify(this.userData));
             return this.userData;
         }
+        this.getUser = function () {
+            return this.data;
+        }
         this.destroyData = function () {
             this.userData = {};
         }
+        this.setMoney = function(minus) {
+            this.data.Wallet.value = parseFloat(this.data.Wallet.value) - parseFloat(minus);
+        }
     })
-    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $http, $state, userService) {
+    .controller('AppCtrl', function ($scope, $ionicModal, $timeout, $http, $state, userService, $ionicViewService) {
         // Form data for the login modal
         $scope.loginData = {};
         $scope.user = {};
@@ -38,8 +48,15 @@ angular.module('starter.controllers', [])
             $scope.logoutModal.show();
             userService.destroyData();
             $scope.user = {};
-            $state.go('app.home');
+            $state.reload();
             $scope.logoutModal.hide();
+            $scope.loginModal.show();
+
+            $ionicViewService.nextViewOptions({
+                disableBack: true
+            });
+
+            $state.go('app.home');
         };
 
         // Triggered in the logout modal to close it
@@ -60,19 +77,22 @@ angular.module('starter.controllers', [])
         // Perform the login action when the user submits the login form
         $scope.doLogin = function () {
             console.log('Doing login', $scope.loginData);
-            $http.post('http://localhost:5000/login/', $scope.loginData).success(function (data, status, headers, config) {
-                console.log(userService);
+            $http.post('http://172.30.40.242:5000/login/', $scope.loginData).success(function (data, status, headers, config) {
                 userService.storeData($scope.loginData);
+                userService.store(data);
                 $scope.user.username = $scope.loginData.username;
                 $scope.user.password = $scope.loginData.password;
                 console.log('Success');
-                console.log($scope.user);
-                $state.go('app.findQuotes');
             });
             $timeout(function () {
                 $scope.closeLogin();
             }, 1000);
         };
+    })
+    .controller('WalletCtrl', function (userService) {
+        var walletCtrl = this;
+
+        walletCtrl.user = userService.getUser();
     })
     .controller('AddStockCtrl', function($http,userService,$stateParams,$state)
     {
@@ -83,7 +103,7 @@ angular.module('starter.controllers', [])
         addStockCtrl.addStock = function () {
             addStockCtrl.stockFormData.username = userService.getData().username;
             addStockCtrl.stockFormData.stock = symbol;
-            $http.post('http://localhost:5000/stockAdd/', addStockCtrl.stockFormData).success(function (data, status, headers, config) {
+            $http.post('http://172.30.40.242:5000/stockAdd/', addStockCtrl.stockFormData).success(function (data, status, headers, config) {
                 console.log('Success');
                 $state.go('app.watchlist');
             })
@@ -119,13 +139,14 @@ angular.module('starter.controllers', [])
             findQuotesCtrl.stockData.username = userService.getData().username;
             findQuotesCtrl.stockData.stock = symbol;
             findQuotesCtrl.stockData.price=price;
-                $http.post('http://localhost:5000/stockBuy/', findQuotesCtrl.stockData).success(function (data, status, headers, config) {
+                $http.post('http://172.30.40.242:5000/stockBuy/', findQuotesCtrl.stockData).success(function (data, status, headers, config) {
+                    userService.setMoney(price);
                     $state.go('app.watchlist');
                 })
                     .error(function (err) {
                         console.log(err);
                     });
-            }
+        }
         findQuotesCtrl.switchTimespan = function (value) {
             findQuotesCtrl.timespan = value;
         }
@@ -170,7 +191,7 @@ angular.module('starter.controllers', [])
         var polingTimeInMilliseconds = 2000;
         $scope.getWatchList = function () {
             var data = userService.getData();
-            $http.get('http://localhost:5000/watchlist/' + data.username).success(function (data, status, headers, config) {
+            $http.get('http://172.30.40.242:5000/watchlist/' + data.username).success(function (data, status, headers, config) {
                 fetchData(data).success(fetchSuccess)
                     .error(fetchError);
             }).error(function (data, status, headers, config) {
@@ -299,5 +320,19 @@ angular.module('starter.controllers', [])
 
         function fetchError(error) {
             console.error(error);
+        }
+
+        stockCtrl.buyStock = function (price,symbol) {
+            stockCtrl.stockData={};
+            stockCtrl.stockData.username = userService.getData().username;
+            stockCtrl.stockData.stock = symbol;
+            stockCtrl.stockData.price=price;
+                $http.post('http://172.30.40.242:5000/stockBuy/', stockCtrl.stockData).success(function (data, status, headers, config) {
+                    userService.setMoney(price);
+                    $state.go('app.watchlist');
+                })
+                    .error(function (err) {
+                        console.log(err);
+                    });
         }
     });

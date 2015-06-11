@@ -4,7 +4,7 @@ var converters = require("./converters.js");
 var passport = require('passport');
 
 var options = {
-    host: "localhost",
+    host: "172.30.4.200",
     port: 8080,
     rest: "/exist/rest/db/apps/bolsaML",
     auth: "admin:admin"
@@ -59,11 +59,12 @@ var login = function (username, password, callback) {
     });
     result = query.each
     (function (item, hits, offset) {
+        console.log();
             if (hits == 0) {
                 callback('Invalid credentials');
             }
             else {
-                callback()
+                callback(item)
             }
         }
     );

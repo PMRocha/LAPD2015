@@ -2,30 +2,54 @@
     <ion-content>
         <form ng-submit="addStockCtrl.addStock()">
             <div class="list">
-                <label class="item item-input">
-                    <span class="input-label">Sell rule quantity</span>
-                    <input type="number" ng-model="addStockCtrl.stockFormData.sellQuantity">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Sell rule Ceiling value</span>
-                    <input type="number" ng-model="addStockCtrl.stockFormData.sellCeilingValue">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Sell rule Floor value</span>
-                    <input type="number" ng-model="addStockCtrl.stockFormData.sellFloorValue">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Buy rule quantity</span>
-                    <input type="number" ng-model="addStockCtrl.stockFormData.buyQuantity">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Buy rule Ceiling value</span>
-                    <input type="number" ng-model="addStockCtrl.stockFormData.buyCeilingValue">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Buy rule Floor value</span>
-                    <input type="number" ng-model="addStockCtrl.stockFormData.buyFloorValue">
-                </label>
+                <div class="row item item-input">
+                    <div class="col">
+                        <span class="input-label">Sell rule quantity</span>
+                    </div>
+                    <div class="col">
+                        <input type="number" ng-model="addStockCtrl.stockFormData.sellQuantity">
+                    </div>
+                </div>
+                <div class="row item item-input">
+                    <div class="col">
+                        <span class="input-label">Sell rule Ceiling value</span>
+                    </div>
+                    <div class="col">
+                        <input type="number" ng-model="addStockCtrl.stockFormData.sellCeilingValue">
+                    </div>
+                </div>
+                <div class="row item item-input">
+                    <div class="col">
+                        <span class="input-label">Sell rule Floor value</span>
+                    </div>
+                    <div class="col">
+                        <input type="number" ng-model="addStockCtrl.stockFormData.sellFloorValue">
+                    </div>
+                </div>
+                <div class="row item item-input">
+                    <div class="col">
+                        <span class="input-label">Buy rule quantity</span>
+                    </div>
+                    <div class="col">
+                        <input type="number" ng-model="addStockCtrl.stockFormData.buyQuantity">
+                    </div>
+                </div>
+                <div class="row item item-input">
+                    <div class="col">
+                        <span class="input-label">Buy rule Ceiling value</span>
+                    </div>
+                    <div class="col">
+                        <input type="number" ng-model="addStockCtrl.stockFormData.buyCeilingValue">
+                    </div>
+                </div>
+                <div class="row item item-input">
+                    <div class="col">
+                        <span class="input-label">Buy rule Floor value</span>
+                    </div>
+                    <div class="col">
+                        <input type="number" ng-model="addStockCtrl.stockFormData.buyFloorValue">
+                    </div>
+                </div>
                 <label class="item">
                     <button class="button button-block button-positive" type="submit">Add</button>
                 </label>

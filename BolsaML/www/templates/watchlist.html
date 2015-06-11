@@ -5,13 +5,13 @@
     <ion-list ng-if="!watchlistCtrl.loading">
       <ion-item class="stock-watchlist-item" ng-repeat="stock in watchlistCtrl.stocks" href="#/app/watchlist/{{stock.symbol}}">
         <div class="row">
-          <div class="col">
+          <div class="col-20">
             {{stock.symbol}}
           </div>
           <div class="col">
             <strong>{{stock.LastTradePriceOnly}}</strong>
           </div>
-          <div class="col" ng-show="stock.quantity>0">
+          <div class="col">
             <strong>1x{{stock.quantity}}</strong>
           </div>
           <div class="col">
